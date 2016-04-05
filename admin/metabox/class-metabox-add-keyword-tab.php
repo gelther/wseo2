@@ -54,4 +54,5 @@ class Metabox_Add_Keyword_Tab implements WPSEO_Metabox_Tab {
 	public function content() {
 		return '';
 	}
+
 }
