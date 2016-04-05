@@ -59,8 +59,7 @@ $yform->admin_header( true, 'wpseo_titles' );
 				}
 				echo '</p>';
 				echo '</div>';
-			}
-			else {
+			} else {
 				echo '<p><strong>', __( 'Homepage &amp; Front page', 'wordpress-seo' ), '</strong><br/>';
 				printf( __( 'You can determine the title and description for the front page by %sediting the front page itself &raquo;%s', 'wordpress-seo' ), '<a href="' . esc_url( get_edit_post_link( get_option( 'page_on_front' ) ) ) . '">', '</a>' );
 				echo '</p>';
@@ -72,7 +71,7 @@ $yform->admin_header( true, 'wpseo_titles' );
 		</div>
 		<div id="post_types" class="wpseotab">
 			<?php
-			$post_types = get_post_types( array( 'public' => true ), 'objects' );
+			$post_types          = get_post_types( array( 'public' => true ), 'objects' );
 			$index_switch_values = array(
 				'off' => '<code>index</code>',
 				'on'  => '<code>noindex</code>',
@@ -85,7 +84,7 @@ $yform->admin_header( true, 'wpseo_titles' );
 						$warn = true;
 					}
 					$name = $pt->name;
-					echo "<div id='". esc_attr( $name ) ."-titles-metas'>";
+					echo "<div id='" . esc_attr( $name ) . "-titles-metas'>";
 					echo '<strong id="' . esc_attr( $name ) . '">' . esc_html( ucfirst( $pt->labels->name ) ) . '</strong><br/>';
 					if ( $warn === true ) {
 						echo '<h4 class="error-message">' . __( 'Take note:', 'wordpress-seo' ) . '</h4>';
@@ -156,7 +155,7 @@ $yform->admin_header( true, 'wpseo_titles' );
 					if ( in_array( $tax->name, array( 'link_category', 'nav_menu', 'post_format' ) ) ) {
 						continue;
 					}
-					echo "<div id='". esc_attr( $tax->name ) ."-titles-metas'>";
+					echo "<div id='" . esc_attr( $tax->name ) . "-titles-metas'>";
 					echo '<h4>' . esc_html( ucfirst( $tax->labels->name ) ) . '</h4>';
 					$yform->textinput( 'title-tax-' . $tax->name, __( 'Title template', 'wordpress-seo' ), 'template taxonomy-template' );
 					$yform->textarea( 'metadesc-tax-' . $tax->name, __( 'Meta description template', 'wordpress-seo' ), array( 'class' => 'template taxonomy-template' ) );
