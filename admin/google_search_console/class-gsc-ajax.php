@@ -12,7 +12,7 @@ class WPSEO_GSC_Ajax {
 	 * Setting the AJAX hooks for GSC
 	 */
 	public function __construct() {
-		add_action( 'wp_ajax_wpseo_mark_fixed_crawl_issue',  array( $this, 'ajax_mark_as_fixed' ) );
+		add_action( 'wp_ajax_wpseo_mark_fixed_crawl_issue', array( $this, 'ajax_mark_as_fixed' ) );
 		add_action( 'wp_ajax_wpseo_gsc_create_redirect_url', array( $this, 'ajax_create_redirect' ) );
 		add_action( 'wp_ajax_wpseo_dismiss_gsc', array( $this, 'dismiss_notice' ) );
 	}
@@ -75,4 +75,5 @@ class WPSEO_GSC_Ajax {
 	private function valid_nonce() {
 		return wp_verify_nonce( filter_input( INPUT_POST, 'ajax_nonce' ), 'wpseo-gsc-ajax-security' );
 	}
+
 }
