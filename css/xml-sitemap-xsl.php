@@ -170,7 +170,7 @@ $xsl = '<?xml version="1.0" encoding="UTF-8"?>
 				<script type="text/javascript" src="' . plugins_url( 'js/jquery.tablesorter.min.js', WPSEO_FILE ) . '"></script>
 				<script	type="text/javascript"><![CDATA[
 					$(document).ready(function() {
-				        $("#sitemap").tablesorter( { widgets: [\'zebra\'] } );
+						$("#sitemap").tablesorter( { widgets: [\'zebra\'] } );
 					});
 				]]></script>
 			</body>
