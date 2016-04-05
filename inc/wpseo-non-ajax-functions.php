@@ -47,8 +47,7 @@ function wpseo_title_test() {
 		if ( ! $res || $matches[1] != $expected_title ) {
 			$options['forcerewritetitle'] = false;
 		}
-	}
-	else {
+	} else {
 		// If that dies, let's make sure the titles are correct and force the output.
 		$options['forcerewritetitle'] = true;
 	}
@@ -82,8 +81,7 @@ function wpseo_description_test() {
 	if ( file_exists( get_stylesheet_directory() . '/header.php' ) ) {
 		// Theme or child theme.
 		$file = get_stylesheet_directory() . '/header.php';
-	}
-	elseif ( file_exists( get_template_directory() . '/header.php' ) ) {
+	} elseif ( file_exists( get_template_directory() . '/header.php' ) ) {
 		// Parent theme in case of a child theme.
 		$file = get_template_directory() . '/header.php';
 	}
@@ -93,8 +91,7 @@ function wpseo_description_test() {
 		$issue       = preg_match_all( '#<\s*meta\s*(name|content)\s*=\s*("|\')(.*)("|\')\s*(name|content)\s*=\s*("|\')(.*)("|\')(\s+)?/?>#i', $header_file, $matches, PREG_SET_ORDER );
 		if ( $issue === false || $issue === 0 ) {
 			$options['theme_has_description'] = false;
-		}
-		else {
+		} else {
 			foreach ( $matches as $meta ) {
 				if ( ( strtolower( $meta[1] ) == 'name' && strtolower( $meta[3] ) == 'description' ) || ( strtolower( $meta[5] ) == 'name' && strtolower( $meta[7] ) == 'description' ) ) {
 					$options['theme_description_found']         = $meta[0];
@@ -104,8 +101,7 @@ function wpseo_description_test() {
 			}
 			if ( $options['theme_description_found'] !== '' ) {
 				$options['theme_has_description'] = true;
-			}
-			else {
+			} else {
 				$options['theme_has_description'] = false;
 			}
 		}
@@ -118,12 +114,10 @@ add_filter( 'after_switch_theme', 'wpseo_description_test', 0 );
 if ( version_compare( $GLOBALS['wp_version'], '3.6.99', '>' ) ) {
 	// Use the new and *sigh* adjusted action hook WP 3.7+.
 	add_action( 'upgrader_process_complete', 'wpseo_upgrader_process_complete', 10, 2 );
-}
-elseif ( version_compare( $GLOBALS['wp_version'], '3.5.99', '>' ) ) {
+} elseif ( version_compare( $GLOBALS['wp_version'], '3.5.99', '>' ) ) {
 	// Use the new action hook WP 3.6+.
 	add_action( 'upgrader_process_complete', 'wpseo_upgrader_process_complete', 10, 3 );
-}
-else {
+} else {
 	// Abuse filters to do our action.
 	add_filter( 'update_theme_complete_actions', 'wpseo_update_theme_complete_actions', 10, 2 );
 	add_filter( 'update_bulk_theme_complete_actions', 'wpseo_update_theme_complete_actions', 10, 2 );
@@ -136,11 +130,11 @@ else {
  *
  * @since    1.4.14
  *
- * @param WP_Upgrader $upgrader_object Upgrader object instance.
- * @param array       $context_array   Context data array.
- * @param mixed       $themes          Optional themes set.
+ * @param  WP_Upgrader $upgrader_object Upgrader object instance.
+ * @param  array       $context_array   Context data array.
+ * @param  mixed       $themes          Optional themes set.
  *
- * @return  void
+ * @return void
  */
 function wpseo_upgrader_process_complete( $upgrader_object, $context_array, $themes = null ) {
 	$options = get_option( 'wpseo' );
@@ -160,8 +154,7 @@ function wpseo_upgrader_process_complete( $upgrader_object, $context_array, $the
 		$themes = array();
 		if ( isset( $context_array['themes'] ) && $context_array['themes'] !== array() ) {
 			$themes = $context_array['themes'];
-		}
-		elseif ( isset( $context_array['theme'] ) && $context_array['theme'] !== '' ) {
+		} elseif ( isset( $context_array['theme'] ) && $context_array['theme'] !== '' ) {
 			$themes = $context_array['theme'];
 		}
 	}
@@ -172,8 +165,7 @@ function wpseo_upgrader_process_complete( $upgrader_object, $context_array, $the
 			// Commented out? wpseo_title_test(); R.
 			wpseo_description_test();
 		}
-	}
-	elseif ( is_string( $themes ) && $themes === $theme ) {
+	} elseif ( is_string( $themes ) && $themes === $theme ) {
 		// Commented out? wpseo_title_test(); R.
 		wpseo_description_test();
 	}
@@ -187,10 +179,10 @@ function wpseo_upgrader_process_complete( $upgrader_object, $context_array, $the
  *
  * @since 1.4.14
  *
- * @param   array           $update_actions Updated actions set.
- * @param   WP_Theme|string $updated_theme  Theme object instance or stylesheet name.
+ * @param  array           $update_actions Updated actions set.
+ * @param  WP_Theme|string $updated_theme  Theme object instance or stylesheet name.
  *
- * @return  array  $update_actions    Unchanged array
+ * @return array           $update_actions Unchanged array
  */
 function wpseo_update_theme_complete_actions( $update_actions, $updated_theme ) {
 	$options = get_option( 'wpseo' );
@@ -202,18 +194,17 @@ function wpseo_update_theme_complete_actions( $update_actions, $updated_theme ) 
 
 	$theme = get_stylesheet();
 	if ( is_object( $updated_theme ) ) {
-		/*
+		/**
 		Bulk update and $updated_theme only contains info on which theme was last in the list
-		   of updated themes, so go & test
-		*/
+			of updated themes, so go & test
+		 */
 
 		// Commented out? wpseo_title_test(); R.
 		wpseo_description_test();
-	}
-	elseif ( $updated_theme === $theme ) {
-		/*
+	} elseif ( $updated_theme === $theme ) {
+		/**
 		Single theme update for the active theme
-		*/
+		 */
 
 		// Commented out? wpseo_title_test(); R.
 		wpseo_description_test();
@@ -221,7 +212,6 @@ function wpseo_update_theme_complete_actions( $update_actions, $updated_theme ) 
 
 	return $update_actions;
 }
-
 
 /**
  * Adds an SEO admin bar menu with several options. If the current user is an admin he can also go straight to several settings menu's from here.
@@ -385,7 +375,7 @@ function wpseo_admin_bar_menu() {
 	$admin_menu = current_user_can( 'manage_options' );
 
 	if ( ! $admin_menu && is_multisite() ) {
-		$options = get_site_option( 'wpseo_ms' );
+		$options    = get_site_option( 'wpseo_ms' );
 		$admin_menu = ( $options['access'] === 'superadmin' && is_super_admin() );
 	}
 
@@ -463,9 +453,9 @@ add_action( 'wp_enqueue_scripts', 'wpseo_admin_bar_css' );
 /**
  * Allows editing of the meta fields through weblog editors like Marsedit.
  *
- * @param array $allcaps Capabilities that must all be true to allow action.
- * @param array $cap     Array of capabilities to be checked, unused here.
- * @param array $args    List of arguments for the specific cap to be checked.
+ * @param  array $allcaps Capabilities that must all be true to allow action.
+ * @param  array $cap     Array of capabilities to be checked, unused here.
+ * @param  array $args    List of arguments for the specific cap to be checked.
  *
  * @return array $allcaps
  */
@@ -488,7 +478,6 @@ function allow_custom_field_edits( $allcaps, $cap, $args ) {
 
 add_filter( 'user_has_cap', 'allow_custom_field_edits', 0, 3 );
 
-
 /********************** DEPRECATED FUNCTIONS **********************/
 
 /**
@@ -510,8 +499,8 @@ function wpseo_defaults() {
  * @deprecated use WPSEO_Utils::translate_score()
  * @see        WPSEO_Utils::translate_score()
  *
- * @param int  $val       The decimal score to translate.
- * @param bool $css_value Whether to return the i18n translated score or the CSS class value.
+ * @param  int    $val       The decimal score to translate.
+ * @param  bool   $css_value Whether to return the i18n translated score or the CSS class value.
  *
  * @return string
  */
@@ -520,7 +509,6 @@ function wpseo_translate_score( $val, $css_value = true ) {
 
 	return WPSEO_Utils::translate_score();
 }
-
 
 /**
  * Check whether file editing is allowed for the .htaccess and robots.txt files
