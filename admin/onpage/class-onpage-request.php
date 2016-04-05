@@ -17,8 +17,8 @@ class WPSEO_OnPage_Request {
 	/**
 	 * Doing the remote get and returns the body
 	 *
-	 * @param string $target_url The home url.
-	 * @param array  $parameters Array of extra parameters to send to OnPage.
+	 * @param  string $target_url The home url.
+	 * @param  array  $parameters Array of extra parameters to send to OnPage.
 	 *
 	 * @return array
 	 * @throws Exception The error message that can be used to show to the user.
@@ -37,7 +37,7 @@ class WPSEO_OnPage_Request {
 
 		// When the request is successful, the response code will be 200.
 		if ( $response_code === 200 ) {
-			$response_body  = wp_remote_retrieve_body( $response );
+			$response_body = wp_remote_retrieve_body( $response );
 
 			return json_decode( $response_body, true );
 		}
@@ -46,8 +46,8 @@ class WPSEO_OnPage_Request {
 	/**
 	 * Sending a request to OnPage to check if the $home_url is indexable
 	 *
-	 * @param string $target_url The URL that will be send to the API.
-	 * @param array  $parameters Array of extra parameters to send to OnPage.
+	 * @param  string $target_url The URL that will be send to the API.
+	 * @param  array  $parameters Array of extra parameters to send to OnPage.
 	 *
 	 * @return array
 	 */
