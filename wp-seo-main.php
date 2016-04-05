@@ -33,7 +33,7 @@ if ( ! defined( 'WPSEO_CSSJS_SUFFIX' ) ) {
 /**
  * Auto load our class files
  *
- * @param string $class Class name.
+ * @param  string $class Class name.
  *
  * @return void
  */
@@ -57,8 +57,7 @@ function wpseo_auto_load( $class ) {
 
 if ( file_exists( WPSEO_PATH . '/vendor/autoload_52.php' ) ) {
 	require WPSEO_PATH . '/vendor/autoload_52.php';
-}
-elseif ( ! class_exists( 'WPSEO_Options' ) ) { // Still checking since might be site-level autoload R.
+} elseif ( ! class_exists( 'WPSEO_Options' ) ) { // Still checking since might be site-level autoload R.
 	add_action( 'admin_init', 'yoast_wpseo_missing_autoload', 1 );
 
 	return;
@@ -79,8 +78,7 @@ if ( function_exists( 'spl_autoload_register' ) ) {
 function wpseo_activate( $networkwide = false ) {
 	if ( ! is_multisite() || ! $networkwide ) {
 		_wpseo_activate();
-	}
-	else {
+	} else {
 		/* Multi-site network activation - activate the plugin for all blogs */
 		wpseo_network_activate_deactivate( true );
 	}
@@ -94,8 +92,7 @@ function wpseo_activate( $networkwide = false ) {
 function wpseo_deactivate( $networkwide = false ) {
 	if ( ! is_multisite() || ! $networkwide ) {
 		_wpseo_deactivate();
-	}
-	else {
+	} else {
 		/* Multi-site network activation - de-activate the plugin for all blogs */
 		wpseo_network_activate_deactivate( false );
 	}
@@ -117,8 +114,7 @@ function wpseo_network_activate_deactivate( $activate = true ) {
 
 			if ( $activate === true ) {
 				_wpseo_activate();
-			}
-			else {
+			} else {
 				_wpseo_deactivate();
 			}
 
@@ -137,16 +133,14 @@ function _wpseo_activate() {
 	WPSEO_Options::get_instance();
 	if ( ! is_multisite() ) {
 		WPSEO_Options::initialize();
-	}
-	else {
+	} else {
 		WPSEO_Options::maybe_set_multisite_defaults( true );
 	}
 	WPSEO_Options::ensure_options_exist();
 
 	if ( is_multisite() && ms_is_switched() ) {
 		delete_option( 'rewrite_rules' );
-	}
-	else {
+	} else {
 		add_action( 'shutdown', 'flush_rewrite_rules' );
 	}
 
@@ -166,8 +160,7 @@ function _wpseo_deactivate() {
 
 	if ( is_multisite() && ms_is_switched() ) {
 		delete_option( 'rewrite_rules' );
-	}
-	else {
+	} else {
 		add_action( 'shutdown', 'flush_rewrite_rules' );
 	}
 
@@ -202,7 +195,6 @@ function wpseo_on_activate_blog( $blog_id ) {
 	}
 }
 
-
 /* ***************************** PLUGIN LOADING *************************** */
 
 /**
@@ -214,14 +206,12 @@ function wpseo_load_textdomain() {
 
 	if ( false !== stripos( $wpseo_path, $mu_path ) ) {
 		load_muplugin_textdomain( 'wordpress-seo', dirname( WPSEO_BASENAME ) . '/languages/' );
-	}
-	else {
+	} else {
 		load_plugin_textdomain( 'wordpress-seo', false, dirname( WPSEO_BASENAME ) . '/languages/' );
 	}
 }
 
 add_action( 'plugins_loaded', 'wpseo_load_textdomain' );
-
 
 /**
  * On plugins_loaded: load the minimum amount of essential files for this plugin
@@ -302,7 +292,6 @@ function wpseo_admin_init() {
 	new WPSEO_Admin_Init();
 }
 
-
 /* ***************************** BOOTSTRAP / HOOK INTO WP *************************** */
 $spl_autoload_exists = function_exists( 'spl_autoload_register' );
 $filter_exists       = function_exists( 'filter_input' );
@@ -331,12 +320,10 @@ if ( ( ! defined( 'WP_INSTALLING' ) || WP_INSTALLING === false ) && ( $spl_autol
 			if ( filter_input( INPUT_POST, 'action' ) === 'inline-save' ) {
 				add_action( 'plugins_loaded', 'wpseo_admin_init', 15 );
 			}
-		}
-		else {
+		} else {
 			add_action( 'plugins_loaded', 'wpseo_admin_init', 15 );
 		}
-	}
-	else {
+	} else {
 		add_action( 'plugins_loaded', 'wpseo_frontend_init', 15 );
 	}
 
@@ -360,7 +347,6 @@ function load_yoast_notifications() {
 	// Init Yoast_Notification_Center class.
 	Yoast_Notification_Center::get();
 }
-
 
 /**
  * Throw an error if the PHP SPL extension is disabled (prevent white screens) and self-deactivate plugin
@@ -454,5 +440,3 @@ function yoast_wpseo_self_deactivate() {
 		}
 	}
 }
-
-
