@@ -94,10 +94,10 @@ class WPSEO_Sitemaps_Admin {
 		if ( ! in_array( $post->ID, $excluded_posts ) ) {
 			if ( defined( 'YOAST_SEO_PING_IMMEDIATELY' ) && YOAST_SEO_PING_IMMEDIATELY ) {
 				wpseo_ping_search_engines();
-			}
-			else {
+			} else {
 				wp_schedule_single_event( ( time() + 300 ), 'wpseo_ping_search_engines' );
 			}
 		}
 	}
+
 } /* End of class */
