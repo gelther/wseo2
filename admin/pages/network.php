@@ -33,8 +33,7 @@ if ( isset( $_POST['wpseo_restore_blog'] ) ) {
 		if ( $blog ) {
 			WPSEO_Options::reset_ms_blog( $restoreblog );
 			add_settings_error( 'wpseo_ms', 'settings_updated', sprintf( __( '%s restored to default SEO settings.', 'wordpress-seo' ), esc_html( $blog->blogname ) ), 'updated' );
-		}
-		else {
+		} else {
 			add_settings_error( 'wpseo_ms', 'settings_updated', sprintf( __( 'Blog %s not found.', 'wordpress-seo' ), esc_html( $restoreblog ) ), 'error' );
 		}
 		unset( $restoreblog, $blog );
@@ -45,8 +44,7 @@ if ( isset( $_POST['wpseo_restore_blog'] ) ) {
 $use_dropdown = true;
 if ( get_blog_count() > 100 ) {
 	$use_dropdown = false;
-}
-else {
+} else {
 	$sites = wp_get_sites( array( 'deleted' => 0 ) );
 	if ( is_array( $sites ) && $sites !== array() ) {
 		$dropdown_input = array(
@@ -74,8 +72,7 @@ else {
 			}
 		}
 		unset( $site, $blog_states );
-	}
-	else {
+	} else {
 		$use_dropdown = false;
 	}
 	unset( $sites );
@@ -107,8 +104,7 @@ if ( $use_dropdown === true ) {
 		'wpseo_ms'
 	);
 	echo '<p>' . __( 'Choose the site whose settings you want to use as default for all sites that are added to your network. If you choose \'None\', the normal plugin defaults will be used.', 'wordpress-seo' ) . '</p>';
-}
-else {
+} else {
 	$yform->textinput( 'defaultblog', __( 'New sites in the network inherit their SEO settings from this site', 'wordpress-seo' ), 'wpseo_ms' );
 	echo '<p>' . sprintf( __( 'Enter the %sSite ID%s for the site whose settings you want to use as default for all sites that are added to your network. Leave empty for none (i.e. the normal plugin defaults will be used).', 'wordpress-seo' ), '<a href="' . esc_url( network_admin_url( 'sites.php' ) ) . '">', '</a>' ) . '</p>';
 }
@@ -131,8 +127,7 @@ if ( $use_dropdown === true ) {
 		$dropdown_input,
 		'wpseo_ms'
 	);
-}
-else {
+} else {
 	$yform->textinput( 'restoreblog', __( 'Blog ID', 'wordpress-seo' ), 'wpseo_ms' );
 }
 
