@@ -57,8 +57,7 @@ class WPSEO_Import_AIOSEO extends WPSEO_Import_External {
 				'<a href="' . esc_url( admin_url( 'update.php?action=install-plugin&plugin=google-analytics-for-wordpress&_wpnonce=' . $plugin_install_nonce ) ) . '">',
 				'</a>'
 			), 'wordpress-seo' ) );
-		}
-		else {
+		} else {
 			$this->set_msg( __( sprintf( 'All in One SEO data successfully imported. Would you like to %sdisable the All in One SEO plugin%s.', '<a href="' . esc_url( admin_url( 'admin.php?page=wpseo_tools&tool=import-export&deactivate_aioseo=1#top#import-seo' ) ) . '">', '</a>' ), 'wordpress-seo' ) );
 		}
 	}
@@ -95,4 +94,5 @@ class WPSEO_Import_AIOSEO extends WPSEO_Import_External {
 			),
 		);
 	}
+
 }
