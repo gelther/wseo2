@@ -26,7 +26,7 @@ class WPSEO_Primary_Term {
 	 */
 	public function __construct( $taxonomy_name, $post_ID ) {
 		$this->taxonomy_name = $taxonomy_name;
-		$this->post_ID = $post_ID;
+		$this->post_ID       = $post_ID;
 	}
 
 	/**
@@ -71,4 +71,5 @@ class WPSEO_Primary_Term {
 
 		return $terms;
 	}
+
 }
