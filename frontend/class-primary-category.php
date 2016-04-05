@@ -18,9 +18,9 @@ class WPSEO_Frontend_Primary_Category {
 	/**
 	 * Filters post_link_category to change the category to the chosen category by the user
 	 *
-	 * @param stdClass $category The category that is now used for the post link.
+	 * @param  stdClass                   $category The category that is now used for the post link.
 	 *
-	 * @return array|null|object|WP_Error The category we want to use for the post link.
+	 * @return array|null|object|WP_Error           The category we want to use for the post link.
 	 */
 	public function post_link_category( $category ) {
 		$primary_category = $this->get_primary_category();
@@ -47,7 +47,7 @@ class WPSEO_Frontend_Primary_Category {
 	/**
 	 * Wrapper for get category to make mocking easier
 	 *
-	 * @param int $primary_category id of primary category.
+	 * @param  int                        $primary_category id of primary category.
 	 *
 	 * @return array|null|object|WP_Error
 	 */
@@ -56,4 +56,5 @@ class WPSEO_Frontend_Primary_Category {
 
 		return $category;
 	}
+
 }
