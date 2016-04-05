@@ -20,13 +20,12 @@ class WPSEO_Sitemap_Timezone {
 	 *
 	 * @todo This is messed up, output type changed, doc wrong. Revert, add new method for formatted. R.
 	 *
-	 * @param string $datetime_string The datetime string in UTC time zone, that needs to be converted to a DateTime object.
-	 * @param string $format          Date format to use.
+	 * @param  string        $datetime_string The datetime string in UTC time zone, that needs to be converted to a DateTime object.
+	 * @param  string        $format          Date format to use.
 	 *
-	 * @return DateTime|null in site's time zone
+	 * @return DateTime|null                  in site's time zone
 	 */
 	public function get_datetime_with_timezone( $datetime_string, $format = 'c' ) {
-
 		static $utc_timezone, $local_timezone;
 
 		if ( ! isset( $utc_timezone ) ) {
@@ -52,7 +51,6 @@ class WPSEO_Sitemap_Timezone {
 	 * @return string valid PHP timezone string
 	 */
 	private function determine_timezone_string() {
-
 		// If site timezone string exists, return it.
 		if ( $timezone = get_option( 'timezone_string' ) ) {
 			return $timezone;
@@ -99,4 +97,5 @@ class WPSEO_Sitemap_Timezone {
 
 		return $this->timezone_string;
 	}
+
 }
