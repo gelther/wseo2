@@ -75,7 +75,7 @@ class WPSEO_Import_External {
 		WPSEO_Meta::replace_meta( '_headspace_noindex', WPSEO_Meta::$meta_prefix . 'meta-robots-noindex', $this->replace );
 		WPSEO_Meta::replace_meta( '_headspace_nofollow', WPSEO_Meta::$meta_prefix . 'meta-robots-nofollow', $this->replace );
 
-		/*
+		/**
 		 * @todo - [JRF => whomever] check if this can be done more efficiently by querying only the meta table
 		 * possibly directly changing it using concat on the existing values
 		 */
@@ -155,8 +155,7 @@ class WPSEO_Import_External {
 			if ( $optnew['rssafter'] === '' || $optnew['rssafter'] === WPSEO_Options::get_default( 'wpseo_rss', 'rssafter' ) ) {
 				$optnew['rssafter'] = $optold['footerstring'];
 			}
-		}
-		else {
+		} else {
 			/* @internal Uncomment the second part if a default would be given to the rssbefore value */
 			if ( $optnew['rssbefore'] === '' /*|| $optnew['rssbefore'] === WPSEO_Options::get_default( 'wpseo_rss', 'rssbefore' )*/ ) {
 				$optnew['rssbefore'] = $optold['footerstring'];
@@ -177,17 +176,16 @@ class WPSEO_Import_External {
 			foreach ( $optold as $opt => $val ) {
 				if ( is_bool( $val ) && $val === true ) {
 					$optnew[ 'breadcrumbs-' . $opt ] = true;
-				}
-				else {
+				} else {
 					$optnew[ 'breadcrumbs-' . $opt ] = $val;
 				}
 			}
 			unset( $opt, $val );
 			update_option( 'wpseo_internallinks', $optnew );
 			$this->set_msg( __( 'Yoast Breadcrumbs options imported successfully.', 'wordpress-seo' ) );
-		}
-		else {
+		} else {
 			$this->set_msg( __( 'Yoast Breadcrumbs options could not be found', 'wordpress-seo' ) );
 		}
 	}
+
 }
