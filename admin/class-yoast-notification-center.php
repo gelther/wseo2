@@ -24,7 +24,6 @@ class Yoast_Notification_Center {
 	 * Construct
 	 */
 	private function __construct() {
-
 		// Load the notifications from cookie.
 		$this->notifications = $this->get_notifications_from_transient();
 
@@ -45,7 +44,6 @@ class Yoast_Notification_Center {
 	 * @return Yoast_Notification_Center
 	 */
 	public static function get() {
-
 		if ( null == self::$instance ) {
 			self::$instance = new self();
 		}
@@ -59,7 +57,6 @@ class Yoast_Notification_Center {
 	 * @return array
 	 */
 	private function get_notifications_from_transient() {
-
 		// The notifications array.
 		$notifications = array();
 
@@ -107,7 +104,6 @@ class Yoast_Notification_Center {
 	 * Write the notifications to a cookie (hooked on shutdown)
 	 */
 	public function set_transient() {
-
 		// Count local stored notifications.
 		if ( count( $this->notifications ) > 0 ) {
 
@@ -137,7 +133,6 @@ class Yoast_Notification_Center {
 	 * Display the notifications
 	 */
 	public function display_notifications() {
-
 		$ids = array();
 
 		foreach ( $this->notifications as $key => $notification ) {
@@ -169,11 +164,11 @@ class Yoast_Notification_Center {
 	 * AJAX display notifications
 	 */
 	public function ajax_get_notifications() {
-
 		// Display the notices.
 		$this->display_notifications();
 
 		// AJAX die.
 		exit;
 	}
+
 }
