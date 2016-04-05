@@ -40,15 +40,15 @@ class WPSEO_Taxonomy_Meta extends WPSEO_Option {
 	 * @static
 	 */
 	public static $defaults_per_term = array(
-		'wpseo_title'           => '',
-		'wpseo_desc'            => '',
-		'wpseo_metakey'         => '',
-		'wpseo_canonical'       => '',
-		'wpseo_bctitle'         => '',
-		'wpseo_noindex'         => 'default',
-		'wpseo_sitemap_include' => '-',
-		'wpseo_focuskw'         => '',
-		'wpseo_linkdex'         => '',
+		'wpseo_title'                   => '',
+		'wpseo_desc'                    => '',
+		'wpseo_metakey'                 => '',
+		'wpseo_canonical'               => '',
+		'wpseo_bctitle'                 => '',
+		'wpseo_noindex'                 => 'default',
+		'wpseo_sitemap_include'         => '-',
+		'wpseo_focuskw'                 => '',
+		'wpseo_linkdex'                 => '',
 
 		// Social fields.
 		'wpseo_opengraph-title'         => '',
@@ -111,7 +111,6 @@ class WPSEO_Taxonomy_Meta extends WPSEO_Option {
 		add_action( 'update_option_' . $this->option_name, array( 'WPSEO_Utils', 'flush_w3tc_cache' ) );
 	}
 
-
 	/**
 	 * Get the singleton instance of this class
 	 *
@@ -126,7 +125,6 @@ class WPSEO_Taxonomy_Meta extends WPSEO_Option {
 		return self::$instance;
 	}
 
-
 	/**
 	 * Add extra default options received from a filter
 	 */
@@ -137,7 +135,6 @@ class WPSEO_Taxonomy_Meta extends WPSEO_Option {
 		}
 	}
 
-
 	/**
 	 * Helper method - Combines a fixed array of default values with an options array
 	 * while filtering out any keys which are not in the defaults array.
@@ -147,12 +144,11 @@ class WPSEO_Taxonomy_Meta extends WPSEO_Option {
 	 * @param  string $option_key Option name of the option we're doing the merge for.
 	 * @param  array  $options    (Optional) Current options. If not set, the option defaults for the $option_key will be returned.
 	 *
-	 * @return  array  Combined and filtered options array.
+	 * @return array              Combined and filtered options array.
 	 */
 
 	/*
 	Public function array_filter_merge( $option_key, $options = null ) {
-
 			$defaults = $this->get_defaults( $option_key );
 
 			if ( ! isset( $options ) || $options === false ) {
@@ -191,6 +187,7 @@ class WPSEO_Taxonomy_Meta extends WPSEO_Option {
 
 			return (array) $options;
 		}
+
 	*/
 
 
@@ -201,13 +198,13 @@ class WPSEO_Taxonomy_Meta extends WPSEO_Option {
 	 * @param  array $clean Clean value for the option, normally the defaults.
 	 * @param  array $old   Old value of the option.
 	 *
-	 * @return  array      Validated clean value for the option to be saved to the database
+	 * @return array        Validated clean value for the option to be saved to the database
 	 */
 	protected function validate_option( $dirty, $clean, $old ) {
-		/*
+		/**
 		Prevent complete validation (which can be expensive when there are lots of terms)
-			   if only one item has changed and has already been validated
-		*/
+				if only one item has changed and has already been validated
+		 */
 		if ( isset( $dirty['wpseo_already_validated'] ) && $dirty['wpseo_already_validated'] === true ) {
 			unset( $dirty['wpseo_already_validated'] );
 
@@ -248,7 +245,6 @@ class WPSEO_Taxonomy_Meta extends WPSEO_Option {
 		return $clean;
 	}
 
-
 	/**
 	 * Validate the meta data for one individual term and removes default values (no need to save those)
 	 *
@@ -257,10 +253,9 @@ class WPSEO_Taxonomy_Meta extends WPSEO_Option {
 	 * @param  array $meta_data New values.
 	 * @param  array $old_meta  The original values.
 	 *
-	 * @return  array        Validated and filtered value
+	 * @return array            Validated and filtered value
 	 */
 	public static function validate_term_meta_data( $meta_data, $old_meta ) {
-
 		$clean     = self::$defaults_per_term;
 		$meta_data = array_map( array( 'WPSEO_Utils', 'trim_recursive' ), $meta_data );
 
@@ -276,8 +271,7 @@ class WPSEO_Taxonomy_Meta extends WPSEO_Option {
 						if ( isset( self::$no_index_options[ $meta_data[ $key ] ] ) ) {
 							$clean[ $key ] = $meta_data[ $key ];
 						}
-					}
-					elseif ( isset( $old_meta[ $key ] ) ) {
+					} elseif ( isset( $old_meta[ $key ] ) ) {
 						// Retain old value if field currently not in use.
 						$clean[ $key ] = $old_meta[ $key ];
 					}
@@ -303,8 +297,7 @@ class WPSEO_Taxonomy_Meta extends WPSEO_Option {
 				case 'wpseo_bctitle':
 					if ( isset( $meta_data[ $key ] ) ) {
 						$clean[ $key ] = WPSEO_Utils::sanitize_text_field( stripslashes( $meta_data[ $key ] ) );
-					}
-					elseif ( isset( $old_meta[ $key ] ) ) {
+					} elseif ( isset( $old_meta[ $key ] ) ) {
 						// Retain old value if field currently not in use.
 						$clean[ $key ] = $old_meta[ $key ];
 					}
@@ -327,23 +320,21 @@ class WPSEO_Taxonomy_Meta extends WPSEO_Option {
 		return array_diff_assoc( $clean, self::$defaults_per_term );
 	}
 
-
 	/**
 	 * Clean a given option value
 	 * - Convert old option values to new
 	 * - Fixes strings which were escaped (should have been sanitized - escaping is for output)
 	 *
-	 * @param  array  $option_value          Old (not merged with defaults or filtered) option value to
+	 * @param array $option_value Old (not merged with defaults or filtered) option value to
 	 *                                       clean according to the rules for this option.
-	 * @param  string $current_version       (optional) Version from which to upgrade, if not set,
+	 * @param string $current_version (optional) Version from which to upgrade, if not set,
 	 *                                       version specific upgrades will be disregarded.
-	 * @param  array  $all_old_option_values (optional) Only used when importing old options to have
+	 * @param array $all_old_option_values (optional) Only used when importing old options to have
 	 *                                       access to the real old values, in contrast to the saved ones.
 	 *
-	 * @return  array            Cleaned option
+	 * @return array Cleaned option
 	 */
 	protected function clean_option( $option_value, $current_version = null, $all_old_option_values = null ) {
-
 		/* Clean up old values and remove empty arrays */
 		if ( is_array( $option_value ) && $option_value !== array() ) {
 
@@ -355,8 +346,7 @@ class WPSEO_Taxonomy_Meta extends WPSEO_Option {
 						if ( ! is_array( $meta_data ) || $meta_data === array() ) {
 							// Remove empty term arrays.
 							unset( $option_value[ $taxonomy ][ $term_id ] );
-						}
-						else {
+						} else {
 							foreach ( $meta_data as $key => $value ) {
 
 								switch ( $key ) {
@@ -391,8 +381,7 @@ class WPSEO_Taxonomy_Meta extends WPSEO_Option {
 							}
 						}
 					}
-				}
-				else {
+				} else {
 					// Remove empty taxonomy arrays.
 					unset( $option_value[ $taxonomy ] );
 				}
@@ -402,18 +391,17 @@ class WPSEO_Taxonomy_Meta extends WPSEO_Option {
 		return $option_value;
 	}
 
-
 	/**
 	 * Retrieve a taxonomy term's meta value(s).
 	 *
 	 * @static
 	 *
-	 * @param  mixed  $term     Term to get the meta value for
+	 * @param mixed $term Term to get the meta value for
 	 *                          either (string) term name, (int) term id or (object) term.
-	 * @param  string $taxonomy Name of the taxonomy to which the term is attached.
-	 * @param  string $meta     (optional) Meta value to get (without prefix).
+	 * @param  string     $taxonomy Name of the taxonomy to which the term is attached.
+	 * @param  string     $meta     (optional) Meta value to get (without prefix).
 	 *
-	 * @return  mixed|bool    Value for the $meta if one is given, might be the default.
+	 * @return mixed|bool           Value for the $meta if one is given, might be the default.
 	 *              If no meta is given, an array of all the meta data for the term.
 	 *              False if the term does not exist or the $meta provided is invalid.
 	 */
@@ -421,24 +409,22 @@ class WPSEO_Taxonomy_Meta extends WPSEO_Option {
 		/* Figure out the term id */
 		if ( is_int( $term ) ) {
 			$term = get_term_by( 'id', $term, $taxonomy );
-		}
-		elseif ( is_string( $term ) ) {
+		} elseif ( is_string( $term ) ) {
 			$term = get_term_by( 'slug', $term, $taxonomy );
 		}
 
 		if ( is_object( $term ) && isset( $term->term_id ) ) {
 			$term_id = $term->term_id;
-		}
-		else {
+		} else {
 			return false;
 		}
 
 		$tax_meta = self::get_term_tax_meta( $term_id, $taxonomy );
 
-		/*
+		/**
 		Either return the complete array or a single value from it or false if the value does not exist
-			   (shouldn't happen after merge with defaults, indicates typo in request)
-		*/
+				(shouldn't happen after merge with defaults, indicates typo in request)
+		 */
 		if ( ! isset( $meta ) ) {
 			return $tax_meta;
 		}
@@ -454,7 +440,7 @@ class WPSEO_Taxonomy_Meta extends WPSEO_Option {
 	/**
 	 * Get the current queried object and return the meta value
 	 *
-	 * @param string $meta The meta field that is needed.
+	 * @param  string     $meta The meta field that is needed.
 	 *
 	 * @return bool|mixed
 	 */
@@ -462,7 +448,6 @@ class WPSEO_Taxonomy_Meta extends WPSEO_Option {
 		$term = $GLOBALS['wp_query']->get_queried_object();
 
 		return self::get_term_meta( $term, $term->taxonomy, $meta );
-
 	}
 
 	/**
@@ -474,8 +459,8 @@ class WPSEO_Taxonomy_Meta extends WPSEO_Option {
 	 */
 	public static function set_values( $term_id, $taxonomy, array $meta_values ) {
 		/* Validate the post values */
-		$old      = self::get_term_meta( $term_id, $taxonomy );
-		$clean    = self::validate_term_meta_data( $meta_values, $old );
+		$old   = self::get_term_meta( $term_id, $taxonomy );
+		$clean = self::validate_term_meta_data( $meta_values, $old );
 
 		self::save_clean_values( $term_id, $taxonomy, $clean );
 	}
@@ -489,7 +474,6 @@ class WPSEO_Taxonomy_Meta extends WPSEO_Option {
 	 * @param string $meta_value The value of the target meta key.
 	 */
 	public static function set_value( $term_id, $taxonomy, $meta_key, $meta_value ) {
-
 		if ( substr( strtolower( $meta_key ), 0, 6 ) !== 'wpseo_' ) {
 			$meta_key = 'wpseo_' . $meta_key;
 		}
@@ -500,9 +484,9 @@ class WPSEO_Taxonomy_Meta extends WPSEO_Option {
 	/**
 	 * Find the keyword usages in the metas for the taxonomies/terms
 	 *
-	 * @param string $keyword		   The keyword to look for.
-	 * @param string $current_term_id  The current term id.
-	 * @param string $current_taxonomy The current taxonomy name.
+	 * @param  string $keyword          The keyword to look for.
+	 * @param  string $current_term_id  The current term id.
+	 * @param  string $current_taxonomy The current taxonomy name.
 	 *
 	 * @return array
 	 */
@@ -510,7 +494,7 @@ class WPSEO_Taxonomy_Meta extends WPSEO_Option {
 		$tax_meta = self::get_tax_meta();
 
 
-		$found    = array();
+		$found = array();
 		// Todo check for terms of all taxonomies, not only the current taxonomy.
 		foreach ( $tax_meta as $taxonomy_name => $terms ) {
 			foreach ( $terms as $term_id => $meta_values ) {
@@ -537,8 +521,7 @@ class WPSEO_Taxonomy_Meta extends WPSEO_Option {
 		/* Add/remove the result to/from the original option value */
 		if ( $clean !== array() ) {
 			$tax_meta[ $taxonomy ][ $term_id ] = $clean;
-		}
-		else {
+		} else {
 			unset( $tax_meta[ $taxonomy ][ $term_id ] );
 			if ( isset( $tax_meta[ $taxonomy ] ) && $tax_meta[ $taxonomy ] === array() ) {
 				unset( $tax_meta[ $taxonomy ] );
@@ -572,8 +555,8 @@ class WPSEO_Taxonomy_Meta extends WPSEO_Option {
 	/**
 	 * Getting the taxonomy meta for the given term_id and taxonomy
 	 *
-	 * @param int    $term_id  The id of the term.
-	 * @param string $taxonomy Name of the taxonomy to which the term is attached.
+	 * @param  int    $term_id  The id of the term.
+	 * @param  string $taxonomy Name of the taxonomy to which the term is attached.
 	 *
 	 * @return array
 	 */
@@ -587,4 +570,5 @@ class WPSEO_Taxonomy_Meta extends WPSEO_Option {
 
 		return self::$defaults_per_term;
 	}
+
 }
