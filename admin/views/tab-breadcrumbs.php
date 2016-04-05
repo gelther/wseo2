@@ -28,7 +28,7 @@ echo '<br/>';
 if ( get_option( 'show_on_front' ) == 'page' && get_option( 'page_for_posts' ) > 0 ) {
 	$yform->toggle_switch( 'breadcrumbs-blog-remove', array(
 		'off' => __( 'Show', 'wordpress-seo' ),
-		'on' => __( 'Hide', 'wordpress-seo' ),
+		'on'  => __( 'Hide', 'wordpress-seo' ),
 	), __( 'Show Blog page', 'wordpress-seo' ) );
 }
 $yform->toggle_switch( 'breadcrumbs-boldlast', array(
