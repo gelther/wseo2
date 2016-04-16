@@ -143,8 +143,8 @@ class WPSEO_GSC_Table extends WP_List_Table {
 	/**
 	 * Default method to display a column
 	 *
-	 * @param array  $item        Data array.
-	 * @param string $column_name Column name key.
+	 * @param  array  $item        Data array.
+	 * @param  string $column_name Column name key.
 	 *
 	 * @return mixed
 	 */
@@ -155,7 +155,7 @@ class WPSEO_GSC_Table extends WP_List_Table {
 	/**
 	 * Checkbox column
 	 *
-	 * @param array $item Item data array.
+	 * @param  array  $item Item data array.
 	 *
 	 * @return string
 	 */
@@ -168,7 +168,7 @@ class WPSEO_GSC_Table extends WP_List_Table {
 	/**
 	 * Formatting the output of the column last crawled into a dateformat
 	 *
-	 * @param array $item Item data array.
+	 * @param  array  $item Item data array.
 	 *
 	 * @return string
 	 */
@@ -179,7 +179,7 @@ class WPSEO_GSC_Table extends WP_List_Table {
 	/**
 	 * Formatting the output of the column first detected into a dateformat
 	 *
-	 * @param array $item Item data array.
+	 * @param  array  $item Item data array.
 	 *
 	 * @return string
 	 */
@@ -190,7 +190,7 @@ class WPSEO_GSC_Table extends WP_List_Table {
 	/**
 	 * URL column
 	 *
-	 * @param array $item Item data array.
+	 * @param  array  $item Item data array.
 	 *
 	 * @return string
 	 */
@@ -304,8 +304,8 @@ class WPSEO_GSC_Table extends WP_List_Table {
 	/**
 	 * Doing the sorting of the issues
 	 *
-	 * @param array $a First data set for comparison.
-	 * @param array $b Second data set for comparison.
+	 * @param  array $a First data set for comparison.
+	 * @param  array $b Second data set for comparison.
 	 *
 	 * @return int
 	 */
@@ -331,7 +331,7 @@ class WPSEO_GSC_Table extends WP_List_Table {
 	/**
 	 * Modal box
 	 *
-	 * @param string $url URL string.
+	 * @param  string $url URL string.
 	 *
 	 * @return string
 	 */
@@ -347,8 +347,8 @@ class WPSEO_GSC_Table extends WP_List_Table {
 	/**
 	 * Determine which model box type should be rendered
 	 *
-	 * @param string $url              URL string.
-	 * @param string $current_redirect Current redirect by reference.
+	 * @param  string $url              URL string.
+	 * @param  string $current_redirect Current redirect by reference.
 	 *
 	 * @return string
 	 */
@@ -370,7 +370,6 @@ class WPSEO_GSC_Table extends WP_List_Table {
 		return 'no_premium';
 	}
 
-
 	/**
 	 * Showing the hidden fields used by the AJAX requests
 	 *
@@ -381,4 +380,5 @@ class WPSEO_GSC_Table extends WP_List_Table {
 		echo "<input id='field_platform' type='hidden' name='platform' value='{$platform}' />";
 		echo "<input id='field_category' type='hidden' name='category' value='{$this->current_view}' />";
 	}
+
 }
