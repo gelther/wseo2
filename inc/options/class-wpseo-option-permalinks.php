@@ -49,7 +49,6 @@ class WPSEO_Option_Permalinks extends WPSEO_Option {
 		add_action( 'update_option_' . $this->option_name, array( 'WPSEO_Utils', 'clear_rewrites' ) );
 	}
 
-
 	/**
 	 * Get the singleton instance of this class
 	 *
@@ -63,7 +62,6 @@ class WPSEO_Option_Permalinks extends WPSEO_Option {
 		return self::$instance;
 	}
 
-
 	/**
 	 * Validate the option
 	 *
@@ -71,10 +69,9 @@ class WPSEO_Option_Permalinks extends WPSEO_Option {
 	 * @param  array $clean Clean value for the option, normally the defaults.
 	 * @param  array $old   Old value of the option (not used here as all fields will always be in the form).
 	 *
-	 * @return  array      Validated clean value for the option to be saved to the database
+	 * @return array        Validated clean value for the option to be saved to the database
 	 */
 	protected function validate_option( $dirty, $clean, $old ) {
-
 		foreach ( $clean as $key => $value ) {
 			switch ( $key ) {
 				/* text fields */
@@ -112,7 +109,6 @@ class WPSEO_Option_Permalinks extends WPSEO_Option {
 		return $clean;
 	}
 
-
 	/**
 	 * Clean a given option value
 	 *
@@ -123,13 +119,13 @@ class WPSEO_Option_Permalinks extends WPSEO_Option {
 	 * @param  array  $all_old_option_values (optional) Only used when importing old options to have
 	 *                                       access to the real old values, in contrast to the saved ones.
 	 *
-	 * @return  array            Cleaned option
+	 * @return array                         Cleaned option
 	 */
 
 	/*
 	Protected function clean_option( $option_value, $current_version = null, $all_old_option_values = null ) {
-
 			return $option_value;
 		}
+
 	*/
 }
