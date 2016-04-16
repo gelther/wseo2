@@ -60,7 +60,6 @@ class WPSEO_Replace_Vars {
 	public function __construct() {
 	}
 
-
 	/**
 	 * Setup the help texts and external replacements as statics so they will be available to all instances
 	 */
@@ -79,7 +78,6 @@ class WPSEO_Replace_Vars {
 		}
 	}
 
-
 	/**
 	 * Register new replacement %%variables%%
 	 * For use by other plugins/themes to register extra variables
@@ -94,7 +92,7 @@ class WPSEO_Replace_Vars {
 	 * @param  string $type             Type of variable: 'basic' or 'advanced', defaults to 'advanced'.
 	 * @param  string $help_text        Help text to be added to the help tab for this variable.
 	 *
-	 * @return bool     Whether the replacement function was succesfully registered
+	 * @return bool                     Whether the replacement function was succesfully registered
 	 */
 	public static function register_replacement( $var, $replace_function, $type = 'advanced', $help_text = '' ) {
 		$success = false;
@@ -126,19 +124,17 @@ class WPSEO_Replace_Vars {
 		return $success;
 	}
 
-
 	/**
 	 * Replace `%%variable_placeholders%%` with their real value based on the current requested page/post/cpt/etc
 	 *
-	 * @param string $string the string to replace the variables in.
-	 * @param array  $args   the object some of the replacement values might come from,
+	 * @param  string $string the string to replace the variables in.
+	 * @param  array  $args   the object some of the replacement values might come from,
 	 *                       could be a post, taxonomy or term.
-	 * @param array  $omit   variables that should not be replaced by this function.
+	 * @param  array  $omit   variables that should not be replaced by this function.
 	 *
 	 * @return string
 	 */
 	public function replace( $string, $args, $omit = array() ) {
-
 		$string = strip_tags( $string );
 
 		// Let's see if we can bail super early.
@@ -204,18 +200,16 @@ class WPSEO_Replace_Vars {
 		return trim( $string );
 	}
 
-
 	/**
 	 * Retrieve the replacements for the variables found.
 	 *
-	 * @param array $matches variables found in the original string - regex result.
-	 * @param array $omit    variables that should not be replaced by this function.
+	 * @param  array $matches variables found in the original string - regex result.
+	 * @param  array $omit    variables that should not be replaced by this function.
 	 *
-	 * @return array retrieved replacements - this might be a smaller array as some variables
+	 * @return array          retrieved replacements - this might be a smaller array as some variables
 	 *               may not yield a replacement in certain contexts.
 	 */
 	private function set_up_replacements( $matches, $omit ) {
-
 		$replacements = array();
 
 		// @todo -> figure out a way to deal with external functions starting with cf_/ct_.
@@ -255,8 +249,6 @@ class WPSEO_Replace_Vars {
 
 		return $replacements;
 	}
-
-
 
 	/* *********************** BASIC VARIABLES ************************** */
 
@@ -420,7 +412,6 @@ class WPSEO_Replace_Vars {
 		return $replacement;
 	}
 
-
 	/**
 	 * Retrieve the site's name for use as replacement string.
 	 *
@@ -514,14 +505,12 @@ class WPSEO_Replace_Vars {
 		return $replacement;
 	}
 
-
-
 	/* *********************** ADVANCED VARIABLES ************************** */
 
 	/**
 	 * Determine the page numbering of the current post/page/cpt
 	 *
-	 * @param string $request 'nr'|'max' - whether to return the page number or the max number of pages.
+	 * @param  string   $request 'nr'|'max' - whether to return the page number or the max number of pages.
 	 *
 	 * @return int|null
 	 */
@@ -567,11 +556,10 @@ class WPSEO_Replace_Vars {
 		return $return;
 	}
 
-
 	/**
 	 * Determine the post type names for the current post/page/cpt
 	 *
-	 * @param string $request 'single'|'plural' - whether to return the single or plural form.
+	 * @param  string      $request 'single'|'plural' - whether to return the single or plural form.
 	 *
 	 * @return string|null
 	 */
@@ -626,11 +614,10 @@ class WPSEO_Replace_Vars {
 		return $this->retrieve_excerpt_only();
 	}
 
-
 	/**
 	 * Retrieve a post/page/cpt's custom field value for use as replacement string
 	 *
-	 * @param string $var The complete variable to replace which includes the name of
+	 * @param  string      $var The complete variable to replace which includes the name of
 	 *                    the custom field which value is to be retrieved.
 	 *
 	 * @return string|null
@@ -652,13 +639,12 @@ class WPSEO_Replace_Vars {
 		return $replacement;
 	}
 
-
 	/**
 	 * Retrieve a post/page/cpt's custom taxonomies for use as replacement string
 	 *
-	 * @param string $var    The complete variable to replace which includes the name of
+	 * @param  string      $var    The complete variable to replace which includes the name of
 	 *                       the custom taxonomy which value(s) is to be retrieved.
-	 * @param bool   $single Whether to retrieve only the first or all values for the taxonomy.
+	 * @param  bool        $single Whether to retrieve only the first or all values for the taxonomy.
 	 *
 	 * @return string|null
 	 */
@@ -676,11 +662,10 @@ class WPSEO_Replace_Vars {
 		return $replacement;
 	}
 
-
 	/**
 	 * Retrieve a post/page/cpt's custom taxonomies description for use as replacement string
 	 *
-	 * @param string $var The complete variable to replace which includes the name of
+	 * @param  string      $var The complete variable to replace which includes the name of
 	 *                    the custom taxonomy which description is to be retrieved.
 	 *
 	 * @return string|null
@@ -984,16 +969,14 @@ class WPSEO_Replace_Vars {
 		return $replacement;
 	}
 
-
-
 	/* *********************** HELP TEXT RELATED ************************** */
 
 	/**
 	 * Create a variable help text table
 	 *
-	 * @param    string $type Either 'basic' or 'advanced'.
+	 * @param  string $type Either 'basic' or 'advanced'.
 	 *
-	 * @return    string            Help text table
+	 * @return string       Help text table
 	 */
 	private static function create_variable_help_table( $type ) {
 		if ( ! in_array( $type, array( 'basic', 'advanced' ), true ) ) {
@@ -1026,7 +1009,6 @@ class WPSEO_Replace_Vars {
 		return self::create_variable_help_table( 'basic' );
 	}
 
-
 	/**
 	 * Create the help text table for the advanced variables for use in a help tab
 	 *
@@ -1036,13 +1018,12 @@ class WPSEO_Replace_Vars {
 		return self::create_variable_help_table( 'advanced' );
 	}
 
-
 	/**
 	 * Set the help text for a user/plugin/theme defined extra variable.
 	 *
-	 * @param  string $type      Type of variable: 'basic' or 'advanced'.
-	 * @param  string $replace   Variable to replace, i.e. '%%var%%'.
-	 * @param  string $help_text The actual help text string.
+	 * @param string $type      Type of variable: 'basic' or 'advanced'.
+	 * @param string $replace   Variable to replace, i.e. '%%var%%'.
+	 * @param string $help_text The actual help text string.
 	 */
 	private static function register_help_text( $type, $replace, $help_text = '' ) {
 		if ( is_string( $replace ) && $replace !== '' ) {
@@ -1057,7 +1038,6 @@ class WPSEO_Replace_Vars {
 			}
 		}
 	}
-
 
 	/**
 	 * Set/translate the help texts for the WPSEO standard basic variables.
@@ -1115,9 +1095,6 @@ class WPSEO_Replace_Vars {
 		);
 	}
 
-
-
-
 	/* *********************** GENERAL HELPER METHODS ************************** */
 
 	/**
@@ -1145,14 +1122,13 @@ class WPSEO_Replace_Vars {
 	/**
 	 * Retrieve a post's terms, comma delimited.
 	 *
-	 * @param int    $id            ID of the post to get the terms for.
-	 * @param string $taxonomy      The taxonomy to get the terms for this post from.
-	 * @param bool   $return_single If true, return the first term.
+	 * @param  int    $id            ID of the post to get the terms for.
+	 * @param  string $taxonomy      The taxonomy to get the terms for this post from.
+	 * @param  bool   $return_single If true, return the first term.
 	 *
-	 * @return string either a single term or a comma delimited string of terms.
+	 * @return string                either a single term or a comma delimited string of terms.
 	 */
 	public function get_terms( $id, $taxonomy, $return_single = false ) {
-
 		$output = '';
 
 		// If we're on a specific tag, category or taxonomy page, use that.
@@ -1184,6 +1160,7 @@ class WPSEO_Replace_Vars {
 
 		return apply_filters( 'wpseo_terms', $output );
 	}
+
 } /* End of class WPSEO_Replace_Vars */
 
 
