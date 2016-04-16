@@ -40,7 +40,7 @@ class Yoast_TextStatistics {
 	/**
 	 * @deprecated 3.0 Removed, use javascript instead.
 	 *
-	 * @param  string $strText Text to be checked.
+	 * @param  string    $strText Text to be checked.
 	 *
 	 * @return int|float
 	 */
@@ -66,7 +66,7 @@ class Yoast_TextStatistics {
 	/**
 	 * @deprecated 3.0 Removed, use javascript instead.
 	 *
-	 * @param string $strText Text to be measured.
+	 * @param  string $strText Text to be measured.
 	 *
 	 * @return int
 	 */
@@ -79,7 +79,7 @@ class Yoast_TextStatistics {
 	/**
 	 * @deprecated 3.0 Removed, use javascript instead.
 	 *
-	 * @param string $strText Text to be transformed.
+	 * @param  string $strText Text to be transformed.
 	 *
 	 * @return string
 	 */
@@ -92,7 +92,7 @@ class Yoast_TextStatistics {
 	/**
 	 * @deprecated 3.0 Removed, use javascript instead.
 	 *
-	 * @param string $strText Text to be transformed.
+	 * @param  string $strText Text to be transformed.
 	 *
 	 * @return string
 	 */
@@ -105,7 +105,7 @@ class Yoast_TextStatistics {
 	/**
 	 * @deprecated 3.0 Removed, use javascript instead.
 	 *
-	 * @param string $strText Text to be transformed.
+	 * @param  string $strText Text to be transformed.
 	 *
 	 * @return string
 	 */
@@ -118,7 +118,7 @@ class Yoast_TextStatistics {
 	/**
 	 * @deprecated 3.0 Removed, use javascript instead.
 	 *
-	 * @param   string $strText Text to be measured.
+	 * @param  string $strText Text to be measured.
 	 *
 	 * @return int
 	 */
@@ -144,7 +144,7 @@ class Yoast_TextStatistics {
 	/**
 	 * @deprecated 3.0 Removed, use javascript instead.
 	 *
-	 * @param string $strText Text to be measured.
+	 * @param  string    $strText Text to be measured.
 	 *
 	 * @return int|float
 	 */
@@ -157,7 +157,7 @@ class Yoast_TextStatistics {
 	/**
 	 * @deprecated 3.0 Removed, use javascript instead.
 	 *
-	 * @param string $strText Text to be measured.
+	 * @param  string    $strText Text to be measured.
 	 *
 	 * @return int|float
 	 */
@@ -166,10 +166,11 @@ class Yoast_TextStatistics {
 
 		return 0;
 	}
+
 	/**
 	 * @deprecated 3.0 Removed, use javascript instead.
 	 *
-	 * @param string $strWord Word to be measured.
+	 * @param  string $strWord Word to be measured.
 	 *
 	 * @return int
 	 */
@@ -178,19 +179,21 @@ class Yoast_TextStatistics {
 
 		return 0;
 	}
+
 	/**
 	 * @deprecated 3.0 Removed, use javascript instead.
 	 *
-	 * @param    int|float $score Initial score.
-	 * @param    int       $min   Minimum score allowed.
-	 * @param    int       $max   Maximum score allowed.
-	 * @param    int       $dps   Round to # decimals.
+	 * @param  int|float $score Initial score.
+	 * @param  int       $min   Minimum score allowed.
+	 * @param  int       $max   Maximum score allowed.
+	 * @param  int       $dps   Round to # decimals.
 	 *
-	 * @return    int|float
+	 * @return int|float
 	 */
 	public function normalize_score( $score, $min, $max, $dps = 1 ) {
 		_deprecated_function( 'Yoast_TextStatistics::normalize_score', 'WPSEO 3.0' );
 
 		return 0;
 	}
+
 }

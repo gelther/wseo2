@@ -54,7 +54,7 @@ class WPSEO_Rewrite {
 	/**
 	 * Override the category link to remove the category base.
 	 *
-	 * @param string $link Unused, overridden by the function.
+	 * @param  string $link Unused, overridden by the function.
 	 *
 	 * @return string
 	 */
@@ -78,7 +78,7 @@ class WPSEO_Rewrite {
 	/**
 	 * Update the query vars with the redirect var when stripcategorybase is active
 	 *
-	 * @param array $query_vars Main query vars to filter.
+	 * @param  array $query_vars Main query vars to filter.
 	 *
 	 * @return array
 	 */
@@ -95,7 +95,7 @@ class WPSEO_Rewrite {
 	/**
 	 * Redirect the "old" category URL to the new one.
 	 *
-	 * @param array $query_vars Query vars to check for existence of redirect var.
+	 * @param  array $query_vars Query vars to check for existence of redirect var.
 	 *
 	 * @return array
 	 */
@@ -158,4 +158,5 @@ class WPSEO_Rewrite {
 
 		return $category_rewrite;
 	}
+
 } /* End of class */

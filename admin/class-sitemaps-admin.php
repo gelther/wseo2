@@ -100,4 +100,5 @@ class WPSEO_Sitemaps_Admin {
 			}
 		}
 	}
+
 } /* End of class */

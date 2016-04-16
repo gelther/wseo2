@@ -12,7 +12,6 @@ class WPSEO_Taxonomy_Columns {
 	 * WPSEO_Taxonomy_Columns constructor.
 	 */
 	public function __construct() {
-
 		$this->taxonomy = $this->get_taxonomy();
 
 		if ( ! empty( $this->taxonomy ) ) {
@@ -24,12 +23,11 @@ class WPSEO_Taxonomy_Columns {
 	/**
 	 * Adds an SEO score column to the terms table, right after the description column.
 	 *
-	 * @param array $columns Current set columns.
+	 * @param  array $columns Current set columns.
 	 *
 	 * @return array
 	 */
 	public function add_columns( array $columns ) {
-
 		if ( $this->is_metabox_hidden() === true ) {
 			return $columns;
 		}
@@ -50,14 +48,13 @@ class WPSEO_Taxonomy_Columns {
 	/**
 	 * Parses the column.
 	 *
-	 * @param string  $content The current content of the column.
-	 * @param string  $column_name The name of the column.
-	 * @param integer $term_id ID of requested taxonomy.
+	 * @param  string  $content     The current content of the column.
+	 * @param  string  $column_name The name of the column.
+	 * @param  integer $term_id     ID of requested taxonomy.
 	 *
 	 * @return string
 	 */
 	public function parse_column( $content, $column_name, $term_id ) {
-
 		switch ( $column_name ) {
 			case 'wpseo_score':
 				return $this->get_score_value( $term_id );
@@ -67,7 +64,6 @@ class WPSEO_Taxonomy_Columns {
 
 		return $content;
 	}
-
 
 	/**
 	 * Returns the posted/get taxonomy value if it is set.
@@ -85,7 +81,7 @@ class WPSEO_Taxonomy_Columns {
 	/**
 	 * Parses the value for the score column.
 	 *
-	 * @param integer $term_id ID of requested taxonomy.
+	 * @param  integer $term_id ID of requested taxonomy.
 	 *
 	 * @return string
 	 */
@@ -118,8 +114,8 @@ class WPSEO_Taxonomy_Columns {
 	/**
 	 * Creates an icon by the given values.
 	 *
-	 * @param WPSEO_Rank $rank The ranking object.
-	 * @param string     $title The title to show.
+	 * @param  WPSEO_Rank $rank  The ranking object.
+	 * @param  string     $title The title to show.
 	 *
 	 * @return string
 	 */
@@ -130,7 +126,7 @@ class WPSEO_Taxonomy_Columns {
 	/**
 	 * Check if the taxonomy is indexable.
 	 *
-	 * @param mixed $term The current term.
+	 * @param  mixed $term The current term.
 	 *
 	 * @return bool
 	 */
@@ -160,7 +156,7 @@ class WPSEO_Taxonomy_Columns {
 	/**
 	 * Returns the focus keyword if this is set, otherwise it will give the term name.
 	 *
-	 * @param stdClass|WP_Term $term The current term.
+	 * @param  stdClass|WP_Term $term The current term.
 	 *
 	 * @return string
 	 */
@@ -194,7 +190,7 @@ class WPSEO_Taxonomy_Columns {
 	 *
 	 * @param  string $taxonomy (optional) The post type to test, defaults to the current post post_type.
 	 *
-	 * @return  bool        Whether or not the meta box (and associated columns etc) should be hidden
+	 * @return bool             Whether or not the meta box (and associated columns etc) should be hidden
 	 */
 	private function is_metabox_hidden( $taxonomy = null ) {
 		$get_taxonomy_type = filter_input( $this->get_taxonomy_input_type(), 'taxonomy' );

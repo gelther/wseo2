@@ -14,7 +14,7 @@ class WPSEO_OnPage_Option {
 	const CANNOT_FETCH     = -1;
 
 	/**
-	 *  The name of the option where data will be stored
+	 * The name of the option where data will be stored
 	 */
 	const OPTION_NAME = 'wpseo_onpage';
 

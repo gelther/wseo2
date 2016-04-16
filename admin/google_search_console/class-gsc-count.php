@@ -38,7 +38,7 @@ class WPSEO_GSC_Count {
 	/**
 	 * Getting the counts for given platform and return them as an array
 	 *
-	 * @param string $platform Platform (desktop, mobile, feature phone).
+	 * @param  string $platform Platform (desktop, mobile, feature phone).
 	 *
 	 * @return array
 	 */
@@ -80,8 +80,8 @@ class WPSEO_GSC_Count {
 	/**
 	 * Getting the counts for given platform and category.
 	 *
-	 * @param string $platform Platform (desktop, mobile, feature phone).
-	 * @param string $category Issue type.
+	 * @param  string  $platform Platform (desktop, mobile, feature phone).
+	 * @param  string  $category Issue type.
 	 *
 	 * @return integer
 	 */
@@ -134,7 +134,7 @@ class WPSEO_GSC_Count {
 	/**
 	 * Parsing the received counts from the API and map the keys to plugin friendly values
 	 *
-	 * @param array $fetched_counts Set of retrieved counts.
+	 * @param  array $fetched_counts Set of retrieved counts.
 	 *
 	 * @return array
 	 */
@@ -144,7 +144,7 @@ class WPSEO_GSC_Count {
 			$new_platform = WPSEO_GSC_Mapper::platform_from_api( $platform_name );
 
 			foreach ( $categories as $category_name => $category ) {
-				$new_category = WPSEO_GSC_Mapper::category_from_api( $category_name );
+				$new_category                             = WPSEO_GSC_Mapper::category_from_api( $category_name );
 				$counts[ $new_platform ][ $new_category ] = $category;
 			}
 		}
@@ -155,9 +155,9 @@ class WPSEO_GSC_Count {
 	/**
 	 * Listing the issues for current category.
 	 *
-	 * @param array  $counts   Set of counts.
-	 * @param string $platform Platform (desktop, mobile, feature phone).
-	 * @param string $category Issue type.
+	 * @param  array  $counts   Set of counts.
+	 * @param  string $platform Platform (desktop, mobile, feature phone).
+	 * @param  string $category Issue type.
 	 *
 	 * @return array
 	 */
@@ -218,4 +218,5 @@ class WPSEO_GSC_Count {
 	private function get_last_fetch() {
 		return get_option( self::OPTION_CI_LAST_FETCH, 0 );
 	}
+
 }

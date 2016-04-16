@@ -13,7 +13,7 @@ class WPSEO_Statistics {
 	 *
 	 * @todo Merge/DRY this with the logic virtually the same in WPSEO_Metabox::column_sort_orderby()
 	 *
-	 * @param WPSEO_Rank $rank The SEO rank to get the post count for.
+	 * @param  WPSEO_Rank $rank The SEO rank to get the post count for.
 	 *
 	 * @return int
 	 */
@@ -135,4 +135,5 @@ class WPSEO_Statistics {
 
 		return $this->get_post_count( new WPSEO_Rank( WPSEO_Rank::NO_INDEX ) );
 	}
+
 }

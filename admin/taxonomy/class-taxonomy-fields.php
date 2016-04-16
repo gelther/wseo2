@@ -54,11 +54,11 @@ abstract class WPSEO_Taxonomy_Fields {
 	/**
 	 * Returns array with the field data
 	 *
-	 * @param string       $label       The label displayed before the field.
-	 * @param string       $description Description which will explain the field.
-	 * @param string       $type        The field type, for example: input, select.
-	 * @param string|array $options     Optional array with additional attributes for the field.
-	 * @param bool         $hide        Should the field be hidden.
+	 * @param  string       $label       The label displayed before the field.
+	 * @param  string       $description Description which will explain the field.
+	 * @param  string       $type        The field type, for example: input, select.
+	 * @param  string|array $options     Optional array with additional attributes for the field.
+	 * @param  bool         $hide        Should the field be hidden.
 	 *
 	 * @return array
 	 */
@@ -75,7 +75,7 @@ abstract class WPSEO_Taxonomy_Fields {
 	/**
 	 * Filter the hidden fields.
 	 *
-	 * @param array $fields Array with the form fields that has will be filtered.
+	 * @param  array $fields Array with the form fields that has will be filtered.
 	 *
 	 * @return array
 	 */

@@ -90,7 +90,6 @@ class WPSEO_Option_Social extends WPSEO_Option {
 		return self::$instance;
 	}
 
-
 	/**
 	 * Translate/set strings used in the option defaults
 	 *
@@ -104,7 +103,6 @@ class WPSEO_Option_Social extends WPSEO_Option {
 		self::$twitter_card_types['summary_large_image'] = __( 'Summary with large image', 'wordpress-seo' );
 	}
 
-
 	/**
 	 * Get a Facebook connect key for the blog
 	 *
@@ -115,7 +113,6 @@ class WPSEO_Option_Social extends WPSEO_Option {
 		return md5( get_bloginfo( 'url' ) . rand() );
 	}
 
-
 	/**
 	 * Validate the option
 	 *
@@ -123,10 +120,9 @@ class WPSEO_Option_Social extends WPSEO_Option {
 	 * @param  array $clean Clean value for the option, normally the defaults.
 	 * @param  array $old   Old value of the option.
 	 *
-	 * @return  array      Validated clean value for the option to be saved to the database
+	 * @return array        Validated clean value for the option to be saved to the database
 	 */
 	protected function validate_option( $dirty, $clean, $old ) {
-
 		foreach ( $clean as $key => $value ) {
 			switch ( $key ) {
 				/* Automagic Facebook connect key */
@@ -148,7 +144,7 @@ class WPSEO_Option_Social extends WPSEO_Option {
 						}
 						else {
 							foreach ( $dirty[ $key ] as $user_id => $fb_array ) {
-								/*
+								/**
 								 * @todo [JRF/JRF => Yoast/whomever] add user_id validation -
 								 * are these WP user-ids or FB user-ids ? Probably FB user-ids,
 								 * if so, find out the rules for FB user-ids
@@ -272,7 +268,6 @@ class WPSEO_Option_Social extends WPSEO_Option {
 		return $clean;
 	}
 
-
 	/**
 	 * Clean a given option value
 	 *
@@ -283,10 +278,9 @@ class WPSEO_Option_Social extends WPSEO_Option {
 	 * @param  array  $all_old_option_values (optional) Only used when importing old options to have
 	 *                                       access to the real old values, in contrast to the saved ones.
 	 *
-	 * @return  array            Cleaned option
+	 * @return array                         Cleaned option
 	 */
 	protected function clean_option( $option_value, $current_version = null, $all_old_option_values = null ) {
-
 		/* Move options from very old option to this one */
 		$old_option = null;
 		if ( isset( $all_old_option_values ) ) {
@@ -317,4 +311,5 @@ class WPSEO_Option_Social extends WPSEO_Option {
 
 		return $option_value;
 	}
+
 }

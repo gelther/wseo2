@@ -35,15 +35,15 @@ class WPSEO_Rank {
 			'start' => 0,
 			'end'   => 0,
 		),
-		self::BAD  => array(
+		self::BAD      => array(
 			'start' => 1,
 			'end'   => 40,
 		),
-		self::OK => array(
+		self::OK       => array(
 			'start' => 41,
 			'end'   => 70,
 		),
-		self::GOOD => array(
+		self::GOOD     => array(
 			'start' => 71,
 			'end'   => 100,
 		),
@@ -152,7 +152,7 @@ class WPSEO_Rank {
 	/**
 	 * Returns a rank for a specific numeric score
 	 *
-	 * @param int $score The score to determine a rank for.
+	 * @param  int  $score The score to determine a rank for.
 	 *
 	 * @return self
 	 */
@@ -182,11 +182,12 @@ class WPSEO_Rank {
 	/**
 	 * Converts a numeric rank into a WPSEO_Rank object, for use in functional array_* functions
 	 *
-	 * @param string $rank SEO Rank.
+	 * @param  string     $rank SEO Rank.
 	 *
 	 * @return WPSEO_Rank
 	 */
 	private static function create_rank( $rank ) {
 		return new self( $rank );
 	}
+
 }

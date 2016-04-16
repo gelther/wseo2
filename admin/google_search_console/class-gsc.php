@@ -49,7 +49,6 @@ class WPSEO_GSC {
 	 * Run init logic.
 	 */
 	public function init() {
-
 		// Setting the screen option.
 		if ( filter_input( INPUT_GET, 'page' ) === 'wpseo_search_console' ) {
 
@@ -81,9 +80,9 @@ class WPSEO_GSC {
 					'</a>'
 				),
 				array(
-					'type'      => 'updated yoast-dismissible',
-					'id'        => 'wpseo-dismiss-gsc',
-					'nonce'     => wp_create_nonce( 'dismiss-gsc-notice' ),
+					'type'  => 'updated yoast-dismissible',
+					'id'    => 'wpseo-dismiss-gsc',
+					'nonce' => wp_create_nonce( 'dismiss-gsc-notice' ),
 				)
 			)
 		);
@@ -138,9 +137,9 @@ class WPSEO_GSC {
 	/**
 	 * Set the screen options
 	 *
-	 * @param string $status Status string.
-	 * @param string $option Option key.
-	 * @param string $value  Value to return.
+	 * @param  string $status Status string.
+	 * @param  string $option Option key.
+	 * @param  string $value  Value to return.
 	 *
 	 * @return mixed
 	 */
@@ -162,7 +161,6 @@ class WPSEO_GSC {
 	 * Handles the POST and GET requests
 	 */
 	private function request_handler() {
-
 		// List the table search post to a get.
 		$this->list_table_search_post_to_get();
 
@@ -246,20 +244,20 @@ class WPSEO_GSC {
 	 */
 	private function set_dependencies() {
 		// Setting the service object.
-		$this->service         = new WPSEO_GSC_Service( WPSEO_GSC_Settings::get_profile() );
+		$this->service = new WPSEO_GSC_Service( WPSEO_GSC_Settings::get_profile() );
 
 		// Setting the platform.
-		$this->platform        = WPSEO_GSC_Mapper::get_current_platform( 'tab' );
+		$this->platform = WPSEO_GSC_Mapper::get_current_platform( 'tab' );
 
 		// Loading the issue counter.
-		$issue_count           = new WPSEO_GSC_Count( $this->service );
+		$issue_count = new WPSEO_GSC_Count( $this->service );
 		$issue_count->fetch_counts();
 
 		// Loading the category filters.
 		$this->category_filter = new WPSEO_GSC_Category_Filters( $issue_count->get_platform_counts( $this->platform ) );
 
 		// Setting the current category.
-		$this->category        = $this->category_filter->get_category();
+		$this->category = $this->category_filter->get_category();
 
 		// Listing the issues.
 		$issue_count->list_issues( $this->platform, $this->category );
@@ -278,10 +276,11 @@ class WPSEO_GSC {
 			array(
 				'id'      => 'basic-help',
 				'title'   => __( 'Issue categories', 'wordpress-seo' ),
-				'content' => '<p><strong>' .__( 'Desktop', 'wordpress-seo' ) . '</strong><br />' . __( 'Errors that occurred when your site was crawled by Googlebot.', 'wordpress-seo' ) . '</p>'
-							. '<p><strong>' .__( 'Smartphone', 'wordpress-seo' ) . '</strong><br />' . __( 'Errors that occurred only when your site was crawled by Googlebot-Mobile (errors didn\'t appear for desktop).', 'wordpress-seo' ) . '</p>'
-							. '<p><strong>' .__( 'Feature phone', 'wordpress-seo' ) . '</strong><br />' . __( 'Errors that only occurred when your site was crawled by Googlebot for feature phones (errors didn\'t appear for desktop).', 'wordpress-seo' ) . '</p>',
+				'content' => '<p><strong>' . __( 'Desktop', 'wordpress-seo' ) . '</strong><br />' . __( 'Errors that occurred when your site was crawled by Googlebot.', 'wordpress-seo' ) . '</p>'
+							. '<p><strong>' . __( 'Smartphone', 'wordpress-seo' ) . '</strong><br />' . __( 'Errors that occurred only when your site was crawled by Googlebot-Mobile (errors didn\'t appear for desktop).', 'wordpress-seo' ) . '</p>'
+							. '<p><strong>' . __( 'Feature phone', 'wordpress-seo' ) . '</strong><br />' . __( 'Errors that only occurred when your site was crawled by Googlebot for feature phones (errors didn\'t appear for desktop).', 'wordpress-seo' ) . '</p>',
 			)
 		);
 	}
+
 }

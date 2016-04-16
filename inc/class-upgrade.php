@@ -187,7 +187,7 @@ class WPSEO_Upgrade {
 	 * Moves the hide- links options from the permalinks option to the titles option
 	 */
 	private function move_hide_links_options() {
-		$options_titles = get_option( 'wpseo_titles' );
+		$options_titles     = get_option( 'wpseo_titles' );
 		$options_permalinks = get_option( 'wpseo_permalinks' );
 
 		foreach ( array( 'hide-feedlinks', 'hide-rsdlink', 'hide-shortlink', 'hide-wlwmanifest' ) as $hide ) {
@@ -226,4 +226,5 @@ class WPSEO_Upgrade {
 
 		WPSEO_Options::ensure_options_exist();                              // Make sure all our options always exist - issue #1245.
 	}
+
 }

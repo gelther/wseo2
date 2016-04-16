@@ -112,7 +112,7 @@ class WPSEO_GSC_Category_Filters {
 	private function set_filter_values() {
 		$this->set_filter_value( 'access_denied', __( 'Access denied', 'wordpress-seo' ), __( 'Server requires authentication or is blocking Googlebot from accessing the site.', 'wordpress-seo' ) );
 		$this->set_filter_value( 'faulty_redirects', __( 'Faulty redirects', 'wordpress-seo' ) );
-		$this->set_filter_value( 'not_followed',__( 'Not followed', 'wordpress-seo' ) );
+		$this->set_filter_value( 'not_followed', __( 'Not followed', 'wordpress-seo' ) );
 		$this->set_filter_value( 'not_found', __( 'Not found', 'wordpress-seo' ), __( 'URL points to a non-existent page.', 'wordpress-seo' ) );
 		$this->set_filter_value( 'other', __( 'Other', 'wordpress-seo' ), __( 'Google was unable to crawl this URL due to an undetermined issue.', 'wordpress-seo' ) );
 		/* Translators: %1$s: expands to '<code>robots.txt</code>'. */
@@ -138,13 +138,13 @@ class WPSEO_GSC_Category_Filters {
 	/**
 	 * Creates a filter link
 	 *
-	 * @param string  $category Issue type.
-	 * @param integer $count    Count for the type.
+	 * @param  string  $category Issue type.
+	 * @param  integer $count    Count for the type.
 	 *
 	 * @return string
 	 */
 	private function create_view_link( $category, $count ) {
-		$href  = add_query_arg( array( 'category' => $category, 'paged' => 1 ) );
+		$href = add_query_arg( array( 'category' => $category, 'paged' => 1 ) );
 
 		$class = 'gsc_category';
 
@@ -171,7 +171,7 @@ class WPSEO_GSC_Category_Filters {
 	/**
 	 * Parsing the category counts. When there are 0 issues for a specific category, just remove that one from the array
 	 *
-	 * @param array $category_counts Set of counts for categories.
+	 * @param  array $category_counts Set of counts for categories.
 	 *
 	 * @return mixed
 	 */
@@ -184,4 +184,5 @@ class WPSEO_GSC_Category_Filters {
 
 		return $category_counts;
 	}
+
 }

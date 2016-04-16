@@ -37,7 +37,6 @@ class WPSEO_Option_RSS extends WPSEO_Option {
 		return self::$instance;
 	}
 
-
 	/**
 	 * Translate strings used in the option defaults
 	 *
@@ -47,7 +46,6 @@ class WPSEO_Option_RSS extends WPSEO_Option {
 		$this->defaults['rssafter'] = sprintf( __( 'The post %s appeared first on %s.', 'wordpress-seo' ), '%%POSTLINK%%', '%%BLOGLINK%%' );
 	}
 
-
 	/**
 	 * Validate the option
 	 *
@@ -55,7 +53,7 @@ class WPSEO_Option_RSS extends WPSEO_Option {
 	 * @param  array $clean Clean value for the option, normally the defaults.
 	 * @param  array $old   Old value of the option.
 	 *
-	 * @return  array      Validated clean value for the option to be saved to the database
+	 * @return array        Validated clean value for the option to be saved to the database
 	 */
 	protected function validate_option( $dirty, $clean, $old ) {
 		foreach ( $clean as $key => $value ) {
@@ -66,4 +64,5 @@ class WPSEO_Option_RSS extends WPSEO_Option {
 
 		return $clean;
 	}
+
 }

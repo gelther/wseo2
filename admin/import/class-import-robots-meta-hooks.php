@@ -36,4 +36,5 @@ class WPSEO_Import_Robots_Meta_Hooks extends WPSEO_Import_Hooks {
 	public function show_deactivate_notice() {
 		echo '<div class="updated"><p>', esc_html__( 'Robots-Meta has been deactivated', 'wordpress-seo' ), '</p></div>';
 	}
+
 }

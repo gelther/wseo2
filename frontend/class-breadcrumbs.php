@@ -110,9 +110,9 @@ class WPSEO_Breadcrumbs {
 	/**
 	 * Get breadcrumb string using the singleton instance of this class
 	 *
-	 * @param string $before  Optional string to prepend.
-	 * @param string $after   Optional string to append.
-	 * @param bool   $display Echo or return flag.
+	 * @param  string $before  Optional string to prepend.
+	 * @param  string $after   Optional string to append.
+	 * @param  bool   $display Echo or return flag.
 	 *
 	 * @return object
 	 */
@@ -144,7 +144,6 @@ class WPSEO_Breadcrumbs {
 	public function __toString() {
 		return self::$before . $this->output . self::$after;
 	}
-
 
 	/**
 	 * Filter: 'wpseo_breadcrumb_single_link_wrapper' - Allows developer to change or wrap each breadcrumb element
@@ -178,13 +177,12 @@ class WPSEO_Breadcrumbs {
 		}
 	}
 
-
 	/**
 	 * Get a term's parents.
 	 *
-	 * @param    object $term Term to get the parents for.
+	 * @param  object $term Term to get the parents for.
 	 *
-	 * @return    array
+	 * @return array
 	 */
 	private function get_term_parents( $term ) {
 		$tax     = $term->taxonomy;
@@ -200,14 +198,14 @@ class WPSEO_Breadcrumbs {
 	/**
 	 * Find the deepest term in an array of term objects
 	 *
-	 * @param array $terms Terms set.
+	 * @param  array  $terms Terms set.
 	 *
 	 * @return object
 	 */
 	private function find_deepest_term( $terms ) {
 		/*
 		Let's find the deepest term in this array, by looping through and then
-		   unsetting every term that is used as a parent by another one in the array.
+			unsetting every term that is used as a parent by another one in the array.
 		*/
 		$terms_by_id = array();
 		foreach ( $terms as $term ) {
@@ -220,7 +218,7 @@ class WPSEO_Breadcrumbs {
 
 		/*
 		As we could still have two subcategories, from different parent categories,
-		   let's pick the one with the lowest ordered ancestor.
+			let's pick the one with the lowest ordered ancestor.
 		*/
 		$parents_count = 0;
 		$term_order    = 9999; // Because ASC.
@@ -404,7 +402,6 @@ class WPSEO_Breadcrumbs {
 
 		$this->crumb_count = count( $this->crumbs );
 	}
-
 
 	/**
 	 * Add a single id based crumb to the crumbs property
@@ -638,7 +635,6 @@ class WPSEO_Breadcrumbs {
 		);
 	}
 
-
 	/**
 	 * Take the crumbs array and convert each crumb to a single breadcrumb string.
 	 *
@@ -669,9 +665,9 @@ class WPSEO_Breadcrumbs {
 	/**
 	 * Retrieve link url and text based on post id
 	 *
-	 * @param int $id Post ID.
+	 * @param  int   $id Post ID.
 	 *
-	 * @return array Array of link text and url
+	 * @return array     Array of link text and url
 	 */
 	private function get_link_info_for_id( $id ) {
 		$link = array();
@@ -697,9 +693,9 @@ class WPSEO_Breadcrumbs {
 	/**
 	 * Retrieve link url and text based on term object
 	 *
-	 * @param object $term Term object.
+	 * @param  object $term Term object.
 	 *
-	 * @return array Array of link text and url
+	 * @return array        Array of link text and url
 	 */
 	private function get_link_info_for_term( $term ) {
 		$link = array();
@@ -718,9 +714,9 @@ class WPSEO_Breadcrumbs {
 	/**
 	 * Retrieve link url and text based on post type
 	 *
-	 * @param string $pt Post type.
+	 * @param  string $pt Post type.
 	 *
-	 * @return array Array of link text and url
+	 * @return array      Array of link text and url
 	 */
 	private function get_link_info_for_ptarchive( $pt ) {
 		$link          = array();
@@ -751,20 +747,19 @@ class WPSEO_Breadcrumbs {
 		return $link;
 	}
 
-
 	/**
 	 * Create a breadcrumb element string
 	 *
 	 * @todo The `$paged` variable only works for archives, not for paged articles, so this does not work
 	 * for paged article at this moment.
 	 *
-	 * @param  array $link Link info array containing the keys:
+	 * @param  array  $link Link info array containing the keys:
 	 *                     'text'    => (string) link text
 	 *                     'url'    => (string) link url
 	 *                     (optional) 'allow_html'    => (bool) whether to (not) escape html in the link text
 	 *                     This prevents html stripping from the text strings set in the
 	 *                     WPSEO -> Internal Links options page.
-	 * @param  int   $i    Index for the current breadcrumb.
+	 * @param  int    $i    Index for the current breadcrumb.
 	 *
 	 * @return string
 	 */
@@ -784,7 +779,7 @@ class WPSEO_Breadcrumbs {
 			}
 
 			if ( ( isset( $link['url'] ) && ( is_string( $link['url'] ) && $link['url'] !== '' ) ) &&
-			     ( $i < ( $this->crumb_count - 1 ) )
+				( $i < ( $this->crumb_count - 1 ) )
 			) {
 				if ( $i === 0 ) {
 					$link_output .= '<' . $this->element . ' typeof="v:Breadcrumb">';
@@ -814,7 +809,6 @@ class WPSEO_Breadcrumbs {
 
 		return apply_filters( 'wpseo_breadcrumb_single_link', $link_output, $link );
 	}
-
 
 	/**
 	 * Create a complete breadcrumb string from an array of breadcrumb element strings
@@ -851,7 +845,6 @@ class WPSEO_Breadcrumbs {
 		}
 	}
 
-
 	/**
 	 * Filter: 'wpseo_breadcrumb_output_id' - Allow changing the HTML ID on the Yoast SEO breadcrumbs wrapper element
 	 *
@@ -880,7 +873,6 @@ class WPSEO_Breadcrumbs {
 		return $class;
 	}
 
-
 	/********************** DEPRECATED METHODS **********************/
 
 	/**
@@ -898,15 +890,14 @@ class WPSEO_Breadcrumbs {
 	 *
 	 * @deprecated 1.5.2.3
 	 *
-	 * @param string $links   Unused.
-	 * @param string $wrapper Unused.
-	 * @param string $element Unused.
+	 * @param  string $links   Unused.
+	 * @param  string $wrapper Unused.
+	 * @param  string $element Unused.
 	 *
 	 * @return void
 	 */
 	public function create_breadcrumbs_string( $links, $wrapper = 'span', $element = 'span' ) {
 		_deprecated_function( __METHOD__, 'WPSEO 1.5.2.3', 'yoast_breadcrumbs' );
 	}
-
 
 } /* End of class */
