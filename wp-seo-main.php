@@ -33,7 +33,7 @@ if ( ! defined( 'WPSEO_CSSJS_SUFFIX' ) ) {
 /**
  * Auto load our class files
  *
- * @param string $class Class name.
+ * @param  string $class Class name.
  *
  * @return void
  */
@@ -202,7 +202,6 @@ function wpseo_on_activate_blog( $blog_id ) {
 	}
 }
 
-
 /* ***************************** PLUGIN LOADING *************************** */
 
 /**
@@ -221,7 +220,6 @@ function wpseo_load_textdomain() {
 }
 
 add_action( 'plugins_loaded', 'wpseo_load_textdomain' );
-
 
 /**
  * On plugins_loaded: load the minimum amount of essential files for this plugin
@@ -302,7 +300,6 @@ function wpseo_admin_init() {
 	new WPSEO_Admin_Init();
 }
 
-
 /* ***************************** BOOTSTRAP / HOOK INTO WP *************************** */
 $spl_autoload_exists = function_exists( 'spl_autoload_register' );
 $filter_exists       = function_exists( 'filter_input' );
@@ -360,7 +357,6 @@ function load_yoast_notifications() {
 	// Init Yoast_Notification_Center class.
 	Yoast_Notification_Center::get();
 }
-
 
 /**
  * Throw an error if the PHP SPL extension is disabled (prevent white screens) and self-deactivate plugin
@@ -454,5 +450,3 @@ function yoast_wpseo_self_deactivate() {
 		}
 	}
 }
-
-
