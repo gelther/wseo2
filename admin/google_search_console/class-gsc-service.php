@@ -94,22 +94,22 @@ class WPSEO_GSC_Service {
 	/**
 	 * Sending request to mark issue as fixed
 	 *
-	 * @param string $url      Issue URL.
-	 * @param string $platform Platform (desktop, mobile, feature phone).
-	 * @param string $category Issue type.
+	 * @param  string $url      Issue URL.
+	 * @param  string $platform Platform (desktop, mobile, feature phone).
+	 * @param  string $category Issue type.
 	 *
 	 * @return bool
 	 */
 	public function mark_as_fixed( $url, $platform, $category ) {
-		$response = $this->client->do_request( 'sites/' .  urlencode( $this->profile ) .  '/urlCrawlErrorsSamples/' . urlencode( ltrim( $url, '/' ) ) . '?category=' . WPSEO_GSC_Mapper::category_to_api( $category ) . '&platform=' . WPSEO_GSC_Mapper::platform_to_api( $platform ) . '', false, 'DELETE' );
+		$response = $this->client->do_request( 'sites/' . urlencode( $this->profile ) . '/urlCrawlErrorsSamples/' . urlencode( ltrim( $url, '/' ) ) . '?category=' . WPSEO_GSC_Mapper::category_to_api( $category ) . '&platform=' . WPSEO_GSC_Mapper::platform_to_api( $platform ) . '', false, 'DELETE' );
 		return ( $response->getResponseHttpCode() === 204 );
 	}
 
 	/**
 	 * Fetching the issues from the GSC API
 	 *
-	 * @param string $platform Platform (desktop, mobile, feature phone).
-	 * @param string $category Issue type.
+	 * @param  string $platform Platform (desktop, mobile, feature phone).
+	 * @param  string $category Issue type.
 	 *
 	 * @return mixed
 	 */
@@ -173,7 +173,7 @@ class WPSEO_GSC_Service {
 	/**
 	 * Getting the crawl error counts
 	 *
-	 * @param string $profile Profile name string.
+	 * @param  string      $profile Profile name string.
 	 *
 	 * @return object|bool
 	 */
@@ -189,4 +189,5 @@ class WPSEO_GSC_Service {
 
 		return false;
 	}
+
 }
