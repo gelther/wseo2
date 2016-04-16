@@ -95,4 +95,5 @@ class WPSEO_Import_AIOSEO extends WPSEO_Import_External {
 			),
 		);
 	}
+
 }
