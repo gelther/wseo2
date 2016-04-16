@@ -80,7 +80,6 @@ class WPSEO_Export {
 	 * @return boolean|string $return true when success, error when failed.
 	 */
 	private function export_settings() {
-
 		$this->export_header();
 
 		foreach ( WPSEO_Options::get_option_names() as $opt_group ) {
@@ -220,4 +219,5 @@ class WPSEO_Export {
 
 		return true;
 	}
+
 }
