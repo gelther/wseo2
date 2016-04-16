@@ -38,4 +38,5 @@ class WPSEO_OnPage_Email_Presenter {
 
 		return '';
 	}
+
 }
