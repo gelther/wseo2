@@ -40,8 +40,8 @@ class Yoast_Social_Facebook {
 	/**
 	 * Adding a new admin
 	 *
-	 * @param string $admin_name Name string.
-	 * @param string $admin_id   ID string.
+	 * @param  string $admin_name Name string.
+	 * @param  string $admin_id   ID string.
 	 *
 	 * @return string
 	 */
@@ -88,7 +88,7 @@ class Yoast_Social_Facebook {
 	/**
 	 * Fetches the id if the full meta tag or a full url was given
 	 *
-	 * @param string $admin_id Admin ID input string to process.
+	 * @param  string $admin_id Admin ID input string to process.
 	 *
 	 * @return string
 	 */
@@ -103,7 +103,7 @@ class Yoast_Social_Facebook {
 	/**
 	 * Returns a different response body depending on the response type
 	 *
-	 * @param string $type Type string.
+	 * @param  string $type Type string.
 	 *
 	 * @return string
 	 */
@@ -221,6 +221,7 @@ class Yoast_Social_Facebook {
 	private function save_options() {
 		update_option( 'wpseo_social', $this->options );
 	}
+
 }
 
 /**
@@ -265,9 +266,9 @@ class Yoast_Social_Facebook_Form {
 	/**
 	 * Parses the admin_link
 	 *
-	 * @param string      $admin_id Facebook admin ID string.
-	 * @param array       $admin    Admin data array.
-	 * @param string|bool $nonce    Optional nonce string.
+	 * @param  string      $admin_id Facebook admin ID string.
+	 * @param  array       $admin    Admin data array.
+	 * @param  string|bool $nonce    Optional nonce string.
 	 *
 	 * @return string
 	 */
@@ -276,7 +277,7 @@ class Yoast_Social_Facebook_Form {
 			$nonce = $this->get_delete_nonce();
 		}
 
-		$return = '<li><a target="_blank" href="' . esc_url( $admin['link'] ) . '">' . esc_html( $admin['name'] ) . '</a>';
+		$return  = '<li><a target="_blank" href="' . esc_url( $admin['link'] ) . '">' . esc_html( $admin['name'] ) . '</a>';
 		$return .= ' - <strong><a href="' . $this->admin_delete_link( $admin_id, $nonce ) . '">X</a></strong></li>';
 
 		return $return;
@@ -401,8 +402,8 @@ class Yoast_Social_Facebook_Form {
 	/**
 	 * Parsing the link that directs to the admin removal
 	 *
-	 * @param string $admin_id Facebook admin ID.
-	 * @param string $nonce    Nonce string.
+	 * @param  string $admin_id Facebook admin ID.
+	 * @param  string $nonce    Nonce string.
 	 *
 	 * @return string
 	 */
@@ -479,4 +480,5 @@ class Yoast_Social_Facebook_Form {
 	private function get_delete_nonce() {
 		return wp_create_nonce( 'delfbadmin' );
 	}
+
 }
