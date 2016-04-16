@@ -57,17 +57,17 @@ class WPSEO_Admin_Init {
 			wp_enqueue_script( 'wpseo-dismissible', plugins_url( 'js/wp-seo-dismissible-' . '310' . WPSEO_CSSJS_SUFFIX . '.js', WPSEO_FILE ), array( 'jquery' ), WPSEO_VERSION, true );
 		}
 	}
+
 	/**
 	 * Redirect first time or just upgraded users to the about screen.
 	 */
 	public function after_update_notice() {
-
 		$can_access = is_multisite() ? WPSEO_Utils::grant_access() : current_user_can( 'manage_options' );
 
 		if ( $can_access && $this->has_ignored_tour() && ! $this->seen_about() ) {
 
 			if ( filter_input( INPUT_GET, 'intro' ) === '1' || $this->dismiss_notice( 'wpseo-dismiss-about' ) ) {
-				update_user_meta( get_current_user_id(), 'wpseo_seen_about_version' , WPSEO_VERSION );
+				update_user_meta( get_current_user_id(), 'wpseo_seen_about_version', WPSEO_VERSION );
 
 				return;
 			}
@@ -82,8 +82,8 @@ class WPSEO_Admin_Init {
 			);
 
 			$notification_options = array(
-				'type' => 'updated',
-				'id' => 'wpseo-dismiss-about',
+				'type'  => 'updated',
+				'id'    => 'wpseo-dismiss-about',
 				'nonce' => wp_create_nonce( 'wpseo-dismiss-about' ),
 			);
 
@@ -107,7 +107,6 @@ class WPSEO_Admin_Init {
 	 * Notify about the default tagline if the user hasn't changed it
 	 */
 	public function tagline_notice() {
-
 		// Just a return, because we want to temporary disable this notice (#3998).
 		return;
 
@@ -118,9 +117,9 @@ class WPSEO_Admin_Init {
 				return;
 			}
 
-			$current_url = ( is_ssl() ? 'https://' : 'http://' );
-			$current_url .= sanitize_text_field( $_SERVER['SERVER_NAME'] ) . sanitize_text_field( $_SERVER['REQUEST_URI'] );
-			$customize_url = add_query_arg( array(
+			$current_url    = ( is_ssl() ? 'https://' : 'http://' );
+			$current_url   .= sanitize_text_field( $_SERVER['SERVER_NAME'] ) . sanitize_text_field( $_SERVER['REQUEST_URI'] );
+			$customize_url  = add_query_arg( array(
 				'url' => urlencode( $current_url ),
 			), wp_customize_url() );
 
@@ -190,7 +189,6 @@ class WPSEO_Admin_Init {
 	 * Shows the notice for recalculating the post. the Notice will only be shown if the user hasn't dismissed it before.
 	 */
 	public function recalculate_notice() {
-
 		// Just a return, because we want to temporary disable this notice (#3998).
 		return;
 
@@ -222,7 +220,7 @@ class WPSEO_Admin_Init {
 	/**
 	 * Check if the user has dismissed the given notice (by $notice_name)
 	 *
-	 * @param string $notice_name The name of the notice that might be dismissed.
+	 * @param  string $notice_name The name of the notice that might be dismissed.
 	 *
 	 * @return bool
 	 */
@@ -243,7 +241,6 @@ class WPSEO_Admin_Init {
 	 * Determine whether we should load the meta box class and if so, load it.
 	 */
 	private function load_meta_boxes() {
-
 		$is_editor      = in_array( $this->pagenow, array( 'edit.php', 'post.php', 'post-new.php' ) );
 		$is_inline_save = filter_input( INPUT_POST, 'action' ) === 'inline-save';
 
@@ -294,7 +291,6 @@ class WPSEO_Admin_Init {
 	 * Loads admin page class for all admin pages starting with `wpseo_`.
 	 */
 	private function load_admin_page_class() {
-
 		if ( $this->on_wpseo_admin_page() ) {
 			// For backwards compatabilty, this still needs a global, for now...
 			$GLOBALS['wpseo_admin_pages'] = new WPSEO_Admin_Pages;
@@ -403,13 +399,12 @@ class WPSEO_Admin_Init {
 	/**
 	 * Check if there is a dismiss notice action.
 	 *
-	 * @param string $notice_name The name of the notice to dismiss.
+	 * @param  string $notice_name The name of the notice to dismiss.
 	 *
 	 * @return bool
 	 */
 	private function dismiss_notice( $notice_name ) {
 		return filter_input( INPUT_GET, $notice_name ) === '1' && wp_verify_nonce( filter_input( INPUT_GET, 'nonce' ), $notice_name );
 	}
-
 
 }
