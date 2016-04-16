@@ -80,7 +80,7 @@ class WPSEO_GSC_Bulk_Action {
 	/**
 	 * Marks the issue as fixed
 	 *
-	 * @param string $issue Issue URL.
+	 * @param  string $issue Issue URL.
 	 *
 	 * @return string
 	 */
@@ -89,4 +89,5 @@ class WPSEO_GSC_Bulk_Action {
 
 		return $issue;
 	}
+
 }
