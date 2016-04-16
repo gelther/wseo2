@@ -34,7 +34,6 @@ class WPSEO_Taxonomy {
 		if ( self::is_term_overview( $GLOBALS['pagenow'] ) ) {
 			new WPSEO_Taxonomy_Columns();
 		}
-
 	}
 
 	/**
@@ -161,7 +160,7 @@ class WPSEO_Taxonomy {
 	/**
 	 * Adds shortcode support to category descriptions.
 	 *
-	 * @param string $desc String to add shortcodes in.
+	 * @param  string $desc String to add shortcodes in.
 	 *
 	 * @return string
 	 */
@@ -232,7 +231,7 @@ class WPSEO_Taxonomy {
 	/**
 	 * Retrieves the title template.
 	 *
-	 * @param object $term taxonomy term.
+	 * @param  object $term taxonomy term.
 	 *
 	 * @return string
 	 */
@@ -249,7 +248,7 @@ class WPSEO_Taxonomy {
 	/**
 	 * Retrieves the metadesc template.
 	 *
-	 * @param object $term taxonomy term.
+	 * @param  object $term taxonomy term.
 	 *
 	 * @return string
 	 */
@@ -274,7 +273,7 @@ class WPSEO_Taxonomy {
 	}
 
 	/**
-	 * @param string $page The string to check for the term overview page.
+	 * @param  string $page The string to check for the term overview page.
 	 *
 	 * @return bool
 	 */
@@ -283,19 +282,19 @@ class WPSEO_Taxonomy {
 	}
 
 	/**
-	 * @param string $page The string to check for the term edit page.
+	 * @param  string $page The string to check for the term edit page.
 	 *
 	 * @return bool
 	 */
 	public static function is_term_edit( $page ) {
 		return 'term.php' === $page
-		       || 'edit-tags.php' === $page; // After we drop support for <4.5 this can be removed.
+				|| 'edit-tags.php' === $page; // After we drop support for <4.5 this can be removed.
 	}
 
 	/**
 	 * Retrieves a template.
 	 *
-	 * @param String $template_option_name The name of the option in which the template you want to get is saved.
+	 * @param  String $template_option_name The name of the option in which the template you want to get is saved.
 	 *
 	 * @return string
 	 */
