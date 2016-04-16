@@ -105,7 +105,7 @@ class WPSEO_GSC_Marker {
 	/**
 	 * Sending a request to the Google Search Console API to let them know we marked an issue as fixed.
 	 *
-	 * @param WPSEO_GSC_Service $service Service object instance.
+	 * @param  WPSEO_GSC_Service $service Service object instance.
 	 *
 	 * @return bool
 	 */
@@ -128,7 +128,7 @@ class WPSEO_GSC_Marker {
 	 * @param WPSEO_GSC_Service $service Service object instance.
 	 */
 	private function update_issue_count( WPSEO_GSC_Service $service ) {
-		$counts  = new WPSEO_GSC_Count( $service );
+		$counts = new WPSEO_GSC_Count( $service );
 
 		// Get the issues.
 		$total_issues = $counts->get_issue_count( $this->platform, $this->category );
@@ -139,4 +139,5 @@ class WPSEO_GSC_Marker {
 		// And update the count.
 		$counts->update_issue_count( $this->platform, $this->category, $total_issues );
 	}
+
 }
