@@ -11,7 +11,7 @@ if ( ! defined( 'WPSEO_VERSION' ) ) {
 
 $yform = Yoast_Form::get_instance();
 
-$social_facebook = new Yoast_Social_Facebook( );
+$social_facebook = new Yoast_Social_Facebook();
 
 $yform->admin_header( true, 'wpseo_social' );
 ?>
