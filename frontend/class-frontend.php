@@ -77,7 +77,6 @@ class WPSEO_Frontend {
 	 * Adds and removes a lot of filters.
 	 */
 	protected function __construct() {
-
 		$this->options = WPSEO_Options::get_options( $this->required_options );
 
 		add_action( 'wp_head', array( $this, 'front_page_specific_init' ), 0 );
@@ -132,8 +131,8 @@ class WPSEO_Frontend {
 		}
 
 		if ( ( $this->options['disable-date'] === true ||
-		       $this->options['disable-author'] === true ) ||
-		     ( isset( $this->options['disable-post_formats'] ) && $this->options['disable-post_formats'] )
+				$this->options['disable-author'] === true ) ||
+			( isset( $this->options['disable-post_formats'] ) && $this->options['disable-post_formats'] )
 		) {
 			add_action( 'wp', array( $this, 'archive_redirect' ) );
 		}
@@ -141,7 +140,7 @@ class WPSEO_Frontend {
 			add_action( 'template_redirect', array( $this, 'attachment_redirect' ), 1 );
 		}
 
-		/*
+		/**
 		 * The setting to get here has been deprecated, but don't remove the code as that would break
 		 * the functionality for those that still have it!
 		 */
@@ -217,7 +216,7 @@ class WPSEO_Frontend {
 	/**
 	 * Override Woo's title with our own.
 	 *
-	 * @param string $title Title string.
+	 * @param  string $title Title string.
 	 *
 	 * @return string
 	 */
@@ -255,7 +254,7 @@ class WPSEO_Frontend {
 	/**
 	 * Used for static home and posts pages as well as singular titles.
 	 *
-	 * @param object|null $object If filled, object to get the title for.
+	 * @param  object|null $object If filled, object to get the title for.
 	 *
 	 * @return string
 	 */
@@ -314,8 +313,8 @@ class WPSEO_Frontend {
 	 *
 	 * All titles pulled from options will be run through the wpseo_replace_vars function.
 	 *
-	 * @param string       $index      name of the page to get the title from the settings for.
-	 * @param object|array $var_source possible object to pull variables from.
+	 * @param  string       $index      name of the page to get the title from the settings for.
+	 * @param  object|array $var_source possible object to pull variables from.
 	 *
 	 * @return string
 	 */
@@ -341,9 +340,9 @@ class WPSEO_Frontend {
 	 * order to prevent duplicate seperations from appearing in the title (this happens when a prefix is supplied to the
 	 * wp_title call on singular pages).
 	 *
-	 * @param string $sep         The separator used between variables.
-	 * @param string $seplocation Whether the separator should be left or right.
-	 * @param string $title       Possible title that's already set.
+	 * @param  string $sep         The separator used between variables.
+	 * @param  string $seplocation Whether the separator should be left or right.
+	 * @param  string $title       Possible title that's already set.
 	 *
 	 * @return string
 	 */
@@ -373,9 +372,9 @@ class WPSEO_Frontend {
 	/**
 	 * This function adds paging details to the title.
 	 *
-	 * @param string $sep         Separator used in the title.
-	 * @param string $seplocation Whether the separator should be left or right.
-	 * @param string $title       The title to append the paging info to.
+	 * @param  string $sep         Separator used in the title.
+	 * @param  string $seplocation Whether the separator should be left or right.
+	 * @param  string $title       The title to append the paging info to.
 	 *
 	 * @return string
 	 */
@@ -392,10 +391,10 @@ class WPSEO_Frontend {
 	/**
 	 * Add part to title, while ensuring that the $seplocation variable is respected.
 	 *
-	 * @param string $sep         Separator used in the title.
-	 * @param string $seplocation Whether the separator should be left or right.
-	 * @param string $title       The title to append the title_part to.
-	 * @param string $title_part  The part to append to the title.
+	 * @param  string $sep         Separator used in the title.
+	 * @param  string $seplocation Whether the separator should be left or right.
+	 * @param  string $title       The title to append the title_part to.
+	 * @param  string $title_part  The part to append to the title.
 	 *
 	 * @return string
 	 */
@@ -410,9 +409,9 @@ class WPSEO_Frontend {
 	/**
 	 * Main title function.
 	 *
-	 * @param string $title              Title that might have already been set.
-	 * @param string $separator          Separator determined in theme (unused).
-	 * @param string $separator_location Whether the separator should be left or right.
+	 * @param  string $title              Title that might have already been set.
+	 * @param  string $separator          Separator determined in theme (unused).
+	 * @param  string $separator_location Whether the separator should be left or right.
 	 *
 	 * @return string
 	 */
@@ -427,13 +426,12 @@ class WPSEO_Frontend {
 	/**
 	 * Main title generation function.
 	 *
-	 * @param string $title              Title that might have already been set.
-	 * @param string $separator_location Whether the separator should be left or right.
+	 * @param  string $title              Title that might have already been set.
+	 * @param  string $separator_location Whether the separator should be left or right.
 	 *
 	 * @return string
 	 */
 	private function generate_title( $title, $separator_location ) {
-
 		if ( is_feed() ) {
 			return $title;
 		}
@@ -635,7 +633,7 @@ class WPSEO_Frontend {
 	/**
 	 * Outputs or returns the debug marker, which is also used for title replacement when force rewrite is active.
 	 *
-	 * @param bool $echo Whether or not to echo the debug marker.
+	 * @param  bool   $echo Whether or not to echo the debug marker.
 	 *
 	 * @return string
 	 */
@@ -715,7 +713,6 @@ class WPSEO_Frontend {
 
 		return;
 	}
-
 
 	/**
 	 * Output the meta robots value.
@@ -809,8 +806,8 @@ class WPSEO_Frontend {
 		$robotsstr = $robots['index'] . ',' . $robots['follow'];
 
 		if ( $robots['other'] !== array() ) {
-			$robots['other'] = array_unique( $robots['other'] ); // TODO Most likely no longer needed, needs testing.
-			$robotsstr .= ',' . implode( ',', $robots['other'] );
+			$robots['other']  = array_unique( $robots['other'] ); // TODO Most likely no longer needed, needs testing.
+			$robotsstr       .= ',' . implode( ',', $robots['other'] );
 		}
 
 		$robotsstr = preg_replace( '`^index,follow,?`', '', $robotsstr );
@@ -832,10 +829,10 @@ class WPSEO_Frontend {
 	/**
 	 * Determine $robots values for a single post
 	 *
-	 * @param array $robots  Robots data array.
-	 * @param int   $post_id The post ID for which to determine the $robots values, defaults to current post.
+	 * @param  array $robots  Robots data array.
+	 * @param  int   $post_id The post ID for which to determine the $robots values, defaults to current post.
 	 *
-	 * @return    array
+	 * @return array
 	 */
 	public function robots_for_single_post( $robots, $post_id = 0 ) {
 		$noindex = WPSEO_Meta::get_value( 'meta-robots-noindex', $post_id );
@@ -873,9 +870,9 @@ class WPSEO_Frontend {
 	 * This function normally outputs the canonical but is also used in other places to retrieve
 	 * the canonical URL for the current page.
 	 *
-	 * @param bool $echo        Whether or not to output the canonical element.
-	 * @param bool $un_paged    Whether or not to return the canonical with or without pagination added to the URL.
-	 * @param bool $no_override Whether or not to return a manually overridden canonical.
+	 * @param  bool   $echo        Whether or not to output the canonical element.
+	 * @param  bool   $un_paged    Whether or not to return the canonical with or without pagination added to the URL.
+	 * @param  bool   $no_override Whether or not to return a manually overridden canonical.
 	 *
 	 * @return string $canonical
 	 */
@@ -1018,7 +1015,7 @@ class WPSEO_Frontend {
 	/**
 	 * Parse the home URL setting to find the base URL for relative URLs.
 	 *
-	 * @param string $path Optional path string.
+	 * @param  string $path Optional path string.
 	 *
 	 * @return string
 	 */
@@ -1119,10 +1116,10 @@ class WPSEO_Frontend {
 	 *
 	 * @since 1.0.2
 	 *
-	 * @param string  $rel                  Link relationship, prev or next.
-	 * @param string  $url                  the un-paginated URL of the current archive.
-	 * @param string  $page                 the page number to add on to $url for the $link tag.
-	 * @param boolean $incl_pagination_base whether or not to include /page/ or not.
+	 * @param  string  $rel                  Link relationship, prev or next.
+	 * @param  string  $url                  the un-paginated URL of the current archive.
+	 * @param  string  $page                 the page number to add on to $url for the $link tag.
+	 * @param  boolean $incl_pagination_base whether or not to include /page/ or not.
 	 *
 	 * @return void
 	 */
@@ -1160,7 +1157,6 @@ class WPSEO_Frontend {
 	 * @return boolean Boolean indicating whether the publisher link was printed
 	 */
 	public function publisher() {
-
 		if ( $this->options['plus-publisher'] !== '' ) {
 			echo '<link rel="publisher" href="', esc_url( $this->options['plus-publisher'] ), '"/>', "\n";
 
@@ -1248,7 +1244,7 @@ class WPSEO_Frontend {
 	/**
 	 * Outputs the meta description element or returns the description text.
 	 *
-	 * @param bool $echo Echo or return output flag.
+	 * @param  bool   $echo Echo or return output flag.
 	 *
 	 * @return string
 	 */
@@ -1362,7 +1358,7 @@ class WPSEO_Frontend {
 				$post_data = $term;
 			}
 		}
-		else if ( ( ! is_string( $metadesc ) || '' === $metadesc ) && '' !== $template ) {
+		elseif ( ( ! is_string( $metadesc ) || '' === $metadesc ) && '' !== $template ) {
 			if ( ! isset( $term ) ) {
 				$term = $wp_query->get_queried_object();
 			}
@@ -1418,7 +1414,6 @@ class WPSEO_Frontend {
 	 * @return boolean Boolean indicating whether the noindex header was sent
 	 */
 	public function noindex_feed() {
-
 		if ( ( is_feed() || is_robots() ) && headers_sent() === false ) {
 			header( 'X-Robots-Tag: noindex, follow', true );
 
@@ -1431,7 +1426,7 @@ class WPSEO_Frontend {
 	/**
 	 * Adds rel="nofollow" to a link, only used for login / registration links.
 	 *
-	 * @param string $input The link element as a string.
+	 * @param  string $input The link element as a string.
 	 *
 	 * @return string
 	 */
@@ -1480,8 +1475,8 @@ class WPSEO_Frontend {
 	 *
 	 * Thanks to Mark Jaquith for this code.
 	 *
-	 * @param string $url  URL string.
-	 * @param string $type Context (such as single).
+	 * @param  string $url  URL string.
+	 * @param  string $type Context (such as single).
 	 *
 	 * @return string
 	 */
@@ -1499,7 +1494,7 @@ class WPSEO_Frontend {
 	 *
 	 * @todo Should this function also allow for relative urls ?
 	 *
-	 * @param string $link The comment link as a string.
+	 * @param  string $link The comment link as a string.
 	 *
 	 * @return string
 	 */
@@ -1514,7 +1509,6 @@ class WPSEO_Frontend {
 	 * @return boolean
 	 */
 	function replytocom_redirect() {
-
 		if ( isset( $_GET['replytocom'] ) && is_singular() ) {
 			$url          = get_permalink( $GLOBALS['post']->ID );
 			$hash         = sanitize_text_field( $_GET['replytocom'] );
@@ -1690,7 +1684,7 @@ class WPSEO_Frontend {
 	/**
 	 * Replaces the possible RSS variables with their actual values.
 	 *
-	 * @param string $content The RSS content that should have the variables replaced.
+	 * @param  string $content The RSS content that should have the variables replaced.
 	 *
 	 * @return string
 	 */
@@ -1731,7 +1725,7 @@ class WPSEO_Frontend {
 	/**
 	 * Adds the RSS footer (or header) to the full RSS feed item.
 	 *
-	 * @param string $content Feed item content.
+	 * @param  string $content Feed item content.
 	 *
 	 * @return string
 	 */
@@ -1742,7 +1736,7 @@ class WPSEO_Frontend {
 	/**
 	 * Adds the RSS footer (or header) to the excerpt RSS feed item.
 	 *
-	 * @param string $content Feed item excerpt.
+	 * @param  string $content Feed item excerpt.
 	 *
 	 * @return string
 	 */
@@ -1755,13 +1749,12 @@ class WPSEO_Frontend {
 	 *
 	 * @since 1.4.14
 	 *
-	 * @param string $content Feed item content.
-	 * @param string $context Feed item context, either 'excerpt' or 'full'.
+	 * @param  string $content Feed item content.
+	 * @param  string $context Feed item context, either 'excerpt' or 'full'.
 	 *
 	 * @return string
 	 */
 	function embed_rss( $content, $context = 'full' ) {
-
 		/**
 		 * Filter: 'wpseo_include_rss_footer' - Allow the the RSS footer to be dynamically shown/hidden
 		 *
@@ -1794,13 +1787,11 @@ class WPSEO_Frontend {
 		return $content;
 	}
 
-
 	/**
 	 * Used in the force rewrite functionality this retrieves the output, replaces the title with the proper SEO
 	 * title and then flushes the output.
 	 */
 	function flush_cache() {
-
 		global $wp_query;
 
 		if ( $this->ob_started !== true ) {
@@ -1837,7 +1828,7 @@ class WPSEO_Frontend {
 	/**
 	 * Function used in testing whether the title should be force rewritten or not.
 	 *
-	 * @param string $title Title string.
+	 * @param  string $title Title string.
 	 *
 	 * @return string
 	 */
@@ -1911,7 +1902,7 @@ class WPSEO_Frontend {
 	/**
 	 * Getting the keywords
 	 *
-	 * @param WP_Post $post The post object with the values.
+	 * @param  WP_Post $post The post object with the values.
 	 *
 	 * @return string
 	 */
@@ -1925,4 +1916,5 @@ class WPSEO_Frontend {
 
 		return $keywords;
 	}
+
 } /* End of class */
