@@ -98,7 +98,7 @@ class WPSEO_Admin_Pages {
 	/**
 	 * Pass some variables to js for upload module.
 	 *
-	 * @return  array
+	 * @return array
 	 */
 	public function localize_media_script() {
 		return array(
@@ -111,13 +111,13 @@ class WPSEO_Admin_Pages {
 	 *
 	 * %s is replaced with <code>%s</code> and replaced again in the javascript with the actual variable.
 	 *
-	 * @return  array
+	 * @return array
 	 */
 	public function localize_admin_script() {
 		return array(
 			/* translators: %s: '%%term_title%%' variable used in titles and meta's template that's not compatible with the given template */
 			'variable_warning' => sprintf( __( 'Warning: the variable %s cannot be used in this template.', 'wordpress-seo' ), '<code>%s</code>' ) . ' ' . __( 'See the help tab for more info.', 'wordpress-seo' ),
-			'locale' => get_locale(),
+			'locale'           => get_locale(),
 		);
 	}
 
@@ -126,9 +126,9 @@ class WPSEO_Admin_Pages {
 	/**
 	 * Exports the current site's Yoast SEO settings.
 	 *
-	 * @param bool $include_taxonomy Whether to include the taxonomy metadata the plugin creates.
+	 * @param  bool        $include_taxonomy Whether to include the taxonomy metadata the plugin creates.
 	 *
-	 * @return bool|string $return False when failed, the URL to the export file when succeeded.
+	 * @return bool|string $return           False when failed, the URL to the export file when succeeded.
 	 */
 	public function export_settings( $include_taxonomy ) {
 		_deprecated_function( __METHOD__, 'WPSEO 2.0', 'This method is deprecated, please use the <code>WPSEO_Export</code> class.' );
@@ -362,7 +362,7 @@ class WPSEO_Admin_Pages {
 	 *
 	 * @deprecated 2.0
 	 *
-	 * @param array $rows Rows to include in the table.
+	 * @param  array  $rows Rows to include in the table.
 	 *
 	 * @return string
 	 */
@@ -406,4 +406,5 @@ class WPSEO_Admin_Pages {
 		_deprecated_function( __METHOD__, 'WPSEO 1.5.0', 'WPSEO_Options::reset()' );
 		WPSEO_Options::reset();
 	}
+
 } /* End of class */
