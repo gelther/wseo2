@@ -262,4 +262,5 @@ class WPSEO_JSON_LD {
 
 		$this->website();
 	}
+
 }
