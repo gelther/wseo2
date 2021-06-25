@@ -54,7 +54,7 @@ class WPSEO_Taxonomy_Metabox {
 		/* translators: %1$s expands to Yoast SEO */
 		$metabox_heading = sprintf( __( '%1$s Settings', 'wordpress-seo' ), $product_title );
 
-		printf( '<div id="poststuff" class="postbox"><h3><span>%1$s</span></h3><div id="taxonomy_overall"></div><div class="inside">' , $metabox_heading );
+		printf( '<div id="poststuff" class="postbox"><h3><span>%1$s</span></h3><div id="taxonomy_overall"></div><div class="inside">', $metabox_heading );
 		echo '<div class="wpseo-metabox-sidebar"><ul>';
 
 		foreach ( $content_sections as $content_section ) {
@@ -91,7 +91,7 @@ class WPSEO_Taxonomy_Metabox {
 	 */
 	private function get_content_meta_section() {
 		$taxonomy_content_fields = new WPSEO_Taxonomy_Content_Fields( $this->term );
-		$content = $this->taxonomy_tab_content->html( $taxonomy_content_fields->get() );
+		$content                 = $this->taxonomy_tab_content->html( $taxonomy_content_fields->get() );
 
 		$tab = new WPSEO_Metabox_Form_Tab(
 			'content',
@@ -121,7 +121,7 @@ class WPSEO_Taxonomy_Metabox {
 	 */
 	private function get_settings_meta_section() {
 		$taxonomy_settings_fields = new WPSEO_Taxonomy_Settings_Fields( $this->term );
-		$content = $this->taxonomy_tab_content->html( $taxonomy_settings_fields->get() );
+		$content                  = $this->taxonomy_tab_content->html( $taxonomy_settings_fields->get() );
 
 		$tab = new WPSEO_Metabox_Form_Tab(
 			'settings',
@@ -149,7 +149,7 @@ class WPSEO_Taxonomy_Metabox {
 	 * @return WPSEO_Metabox_Section
 	 */
 	private function get_social_meta_section() {
-		$options = WPSEO_Options::get_option( 'wpseo_social' );
+		$options                = WPSEO_Options::get_option( 'wpseo_social' );
 		$taxonomy_social_fields = new WPSEO_Taxonomy_Social_Fields( $this->term );
 
 		$tabs = array();
@@ -226,8 +226,8 @@ class WPSEO_Taxonomy_Metabox {
 	public function traffic_light_svg() {
 		return <<<SVG
 <svg class="yst-traffic-light init" version="1.1" xmlns:x="&ns_extend;" xmlns:i="&ns_ai;" xmlns:graph="&ns_graphs;"
-	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
-	 x="0px" y="0px" viewBox="0 0 30 47" enable-background="new 0 0 30 47" xml:space="preserve">
+	xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
+	x="0px" y="0px" viewBox="0 0 30 47" enable-background="new 0 0 30 47" xml:space="preserve">
 <g id="BG_1_">
 </g>
 <g id="traffic_light">
@@ -235,7 +235,7 @@ class WPSEO_Taxonomy_Metabox {
 		<g>
 			<g>
 				<path fill="#5B2942" d="M22,0H8C3.6,0,0,3.6,0,7.9v31.1C0,43.4,3.6,47,8,47h14c4.4,0,8-3.6,8-7.9V7.9C30,3.6,26.4,0,22,0z
-					 M27.5,38.8c0,3.1-2.6,5.7-5.8,5.7H8.3c-3.2,0-5.8-2.5-5.8-5.7V8.3c0-1.5,0.6-2.9,1.7-4c1.1-1,2.5-1.6,4.1-1.6h13.4
+					M27.5,38.8c0,3.1-2.6,5.7-5.8,5.7H8.3c-3.2,0-5.8-2.5-5.8-5.7V8.3c0-1.5,0.6-2.9,1.7-4c1.1-1,2.5-1.6,4.1-1.6h13.4
 					c1.5,0,3,0.6,4.1,1.6c1.1,1.1,1.7,2.5,1.7,4V38.8z"/>
 			</g>
 			<g class="traffic-light-color traffic-light-red">
@@ -293,4 +293,5 @@ SVG;
 				</li>
 			</script>';
 	}
+
 }

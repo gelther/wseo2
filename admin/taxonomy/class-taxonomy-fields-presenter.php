@@ -45,7 +45,7 @@ class WPSEO_Taxonomy_Fields_Presenter {
 		$esc_field_name = esc_attr( $field_name );
 
 		$label = $this->get_label( $field_options['label'], $esc_field_name );
-		$field = $this->get_field( $field_options['type'], $esc_field_name, $this->get_field_value( $field_name ) , (array) $field_options['options'] );
+		$field = $this->get_field( $field_options['type'], $esc_field_name, $this->get_field_value( $field_name ), (array) $field_options['options'] );
 		$help  = $this->get_help( $field, $field_options['description'], $esc_field_name );
 
 		return $this->parse_row( $label, $help, $field );
@@ -54,15 +54,14 @@ class WPSEO_Taxonomy_Fields_Presenter {
 	/**
 	 * Generates the html for the the given field config
 	 *
-	 * @param string $field_type  The fieldtype, e.g: text, checkbox, etc.
-	 * @param string $field_name  The name of the field.
-	 * @param string $field_value The value of the field.
-	 * @param array  $options     Array with additional options.
+	 * @param  string $field_type  The fieldtype, e.g: text, checkbox, etc.
+	 * @param  string $field_name  The name of the field.
+	 * @param  string $field_value The value of the field.
+	 * @param  array  $options     Array with additional options.
 	 *
 	 * @return string
 	 */
-	private function get_field($field_type, $field_name, $field_value, array $options) {
-
+	private function get_field( $field_type, $field_name, $field_value, array $options ) {
 		$class = $this->get_class( $options );
 		$field = '';
 
@@ -94,8 +93,8 @@ class WPSEO_Taxonomy_Fields_Presenter {
 					$select_options = ( array_key_exists( 'options', $options ) ) ? $options['options'] : $options;
 
 					foreach ( $select_options as $option => $option_label ) {
-						$selected = selected( $option, $field_value, false );
-						$field .= '<option ' . $selected . ' value="' . esc_attr( $option ) . '">' . esc_html( $option_label ) . '</option>';
+						$selected  = selected( $option, $field_value, false );
+						$field    .= '<option ' . $selected . ' value="' . esc_attr( $option ) . '">' . esc_html( $option_label ) . '</option>';
 					}
 					unset( $option, $option_label, $selected );
 
@@ -117,7 +116,7 @@ class WPSEO_Taxonomy_Fields_Presenter {
 	/**
 	 * Getting the value for given field_name
 	 *
-	 * @param string $field_name The fieldname to get the value for.
+	 * @param  string $field_name The fieldname to get the value for.
 	 *
 	 * @return string
 	 */
@@ -132,7 +131,7 @@ class WPSEO_Taxonomy_Fields_Presenter {
 	/**
 	 * Getting the class attributes if $options contains a class key
 	 *
-	 * @param array $options The array with field options.
+	 * @param  array  $options The array with field options.
 	 *
 	 * @return string
 	 */
@@ -147,8 +146,8 @@ class WPSEO_Taxonomy_Fields_Presenter {
 	/**
 	 * Getting the label HTML
 	 *
-	 * @param string $label	     The label value.
-	 * @param string $field_name The target field.
+	 * @param  string $label      The label value.
+	 * @param  string $field_name The target field.
 	 *
 	 * @return string
 	 */
@@ -163,9 +162,9 @@ class WPSEO_Taxonomy_Fields_Presenter {
 	/**
 	 * Returns the help text
 	 *
-	 * @param string $field_html The generated HTML for the field.
-	 * @param string $help_text  The help text that will be displayed.
-	 * @param string $field_name The field name.
+	 * @param  string $field_html The generated HTML for the field.
+	 * @param  string $help_text  The help text that will be displayed.
+	 * @param  string $field_name The field name.
 	 *
 	 * @return string
 	 */
@@ -180,8 +179,8 @@ class WPSEO_Taxonomy_Fields_Presenter {
 	/**
 	 * Parsing question mark with the help-text
 	 *
-	 * @param string $field_name The name of the field where the helptext is generated for.
-	 * @param string $help_text  The help text itself.
+	 * @param  string $field_name The name of the field where the helptext is generated for.
+	 * @param  string $help_text  The help text itself.
 	 *
 	 * @return string
 	 */
@@ -203,9 +202,9 @@ class WPSEO_Taxonomy_Fields_Presenter {
 	/**
 	 * Returns the HTML for the row which contains label, help and the field.
 	 *
-	 * @param string $label The html for the label if there was a label set.
-	 * @param string $help  The html for the help, when it's there.
-	 * @param string $field The html for the field.
+	 * @param  string $label The html for the label if there was a label set.
+	 * @param  string $help  The html for the help, when it's there.
+	 * @param  string $field The html for the field.
 	 *
 	 * @return string
 	 */
@@ -216,4 +215,5 @@ class WPSEO_Taxonomy_Fields_Presenter {
 
 		return $field;
 	}
+
 }

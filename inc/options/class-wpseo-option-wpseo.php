@@ -82,10 +82,10 @@ class WPSEO_Option_Wpseo extends WPSEO_Option {
 	 * @return \WPSEO_Option_Wpseo
 	 */
 	protected function __construct() {
-		/*
+		/**
 		Dirty fix for making certain defaults available during activation while still only
-			   defining them once
-		*/
+				defining them once
+		 */
 		foreach ( self::$desc_defaults as $key => $value ) {
 			$this->defaults[ $key ] = $value;
 		}
@@ -96,7 +96,6 @@ class WPSEO_Option_Wpseo extends WPSEO_Option {
 		add_action( 'add_option_' . $this->option_name, array( 'WPSEO_Utils', 'clear_cache' ) );
 		add_action( 'update_option_' . $this->option_name, array( 'WPSEO_Utils', 'clear_cache' ) );
 	}
-
 
 	/**
 	 * Get the singleton instance of this class
@@ -118,10 +117,9 @@ class WPSEO_Option_Wpseo extends WPSEO_Option {
 	 * @param  array $clean Clean value for the option, normally the defaults.
 	 * @param  array $old   Old value of the option.
 	 *
-	 * @return  array      Validated clean value for the option to be saved to the database
+	 * @return array        Validated clean value for the option to be saved to the database
 	 */
 	protected function validate_option( $dirty, $clean, $old ) {
-
 		foreach ( $clean as $key => $value ) {
 			switch ( $key ) {
 				case 'version':
@@ -136,8 +134,7 @@ class WPSEO_Option_Wpseo extends WPSEO_Option {
 					 */
 					if ( isset( $dirty[ $key ] ) && is_array( $dirty[ $key ] ) ) {
 						$clean[ $key ] = array_unique( $dirty[ $key ] );
-					}
-					elseif ( isset( $old[ $key ] ) && is_array( $old[ $key ] ) ) {
+					} elseif ( isset( $old[ $key ] ) && is_array( $old[ $key ] ) ) {
 						$clean[ $key ] = array_unique( $old[ $key ] );
 					}
 					break;
@@ -146,8 +143,7 @@ class WPSEO_Option_Wpseo extends WPSEO_Option {
 				case 'theme_description_found':
 					if ( isset( $dirty[ $key ] ) && is_string( $dirty[ $key ] ) ) {
 						$clean[ $key ] = $dirty[ $key ]; // @todo [JRF/whomever] maybe do wp_kses ?
-					}
-					elseif ( isset( $old[ $key ] ) && is_string( $old[ $key ] ) ) {
+					} elseif ( isset( $old[ $key ] ) && is_string( $old[ $key ] ) ) {
 						$clean[ $key ] = $old[ $key ];
 					}
 					break;
@@ -187,16 +183,15 @@ class WPSEO_Option_Wpseo extends WPSEO_Option {
 				case 'theme_has_description':
 					if ( isset( $dirty[ $key ] ) ) {
 						$clean[ $key ] = WPSEO_Utils::validate_bool( $dirty[ $key ] );
-					}
-					elseif ( isset( $old[ $key ] ) ) {
+					} elseif ( isset( $old[ $key ] ) ) {
 						$clean[ $key ] = WPSEO_Utils::validate_bool( $old[ $key ] );
 					}
 					break;
 
 
-				/*
+				/**
 				Boolean dismiss warnings - not fields - may not be in form
-					   (and don't need to be either as long as the default is false)
+						(and don't need to be either as long as the default is false)
 				 */
 				case 'ignore_blog_public_warning':
 				case 'ignore_meta_description_warning':
@@ -205,18 +200,17 @@ class WPSEO_Option_Wpseo extends WPSEO_Option {
 				case 'ms_defaults_set':
 					if ( isset( $dirty[ $key ] ) ) {
 						$clean[ $key ] = WPSEO_Utils::validate_bool( $dirty[ $key ] );
-					}
-					elseif ( isset( $old[ $key ] ) ) {
+					} elseif ( isset( $old[ $key ] ) ) {
 						$clean[ $key ] = WPSEO_Utils::validate_bool( $old[ $key ] );
 					}
 					break;
 
 
-				/*
+				/**
 				Boolean (checkbox) fields
-				*/
+				 */
 
-				/*
+				/**
 				Covers
 				 * 		'disableadvanced_meta'
 				 * 		'yoast_tracking'
@@ -230,18 +224,17 @@ class WPSEO_Option_Wpseo extends WPSEO_Option {
 		return $clean;
 	}
 
-
 	/**
 	 * Clean a given option value
 	 *
-	 * @param  array  $option_value          Old (not merged with defaults or filtered) option value to
+	 * @param array $option_value Old (not merged with defaults or filtered) option value to
 	 *                                       clean according to the rules for this option.
-	 * @param  string $current_version       (optional) Version from which to upgrade, if not set,
+	 * @param string $current_version (optional) Version from which to upgrade, if not set,
 	 *                                       version specific upgrades will be disregarded.
-	 * @param  array  $all_old_option_values (optional) Only used when importing old options to have
+	 * @param array $all_old_option_values (optional) Only used when importing old options to have
 	 *                                       access to the real old values, in contrast to the saved ones.
 	 *
-	 * @return  array            Cleaned option
+	 * @return array Cleaned option
 	 */
 	protected function clean_option( $option_value, $current_version = null, $all_old_option_values = null ) {
 		// Deal with renaming of some options without losing the settings.
@@ -287,4 +280,5 @@ class WPSEO_Option_Wpseo extends WPSEO_Option {
 
 		return $option_value;
 	}
+
 }

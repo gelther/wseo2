@@ -62,7 +62,6 @@ class WPSEO_Option_XML extends WPSEO_Option {
 		add_action( 'update_option_' . $this->option_name, array( 'WPSEO_Utils', 'clear_sitemap_cache' ) );
 	}
 
-
 	/**
 	 * Get the singleton instance of this class
 	 *
@@ -79,10 +78,9 @@ class WPSEO_Option_XML extends WPSEO_Option {
 	/**
 	 * Add dynamically created default options based on available post types and taxonomies
 	 *
-	 * @return  void
+	 * @return void
 	 */
 	public function enrich_defaults() {
-
 		$user_roles          = WPSEO_Utils::get_roles();
 		$filtered_user_roles = apply_filters( 'wpseo_sitemaps_supported_user_roles', $user_roles );
 		if ( is_array( $filtered_user_roles ) && $filtered_user_roles !== array() ) {
@@ -102,8 +100,7 @@ class WPSEO_Option_XML extends WPSEO_Option {
 			foreach ( $filtered_post_types as $pt ) {
 				if ( $pt !== 'attachment' ) {
 					$this->defaults[ 'post_types-' . $pt . '-not_in_sitemap' ] = false;
-				}
-				else {
+				} else {
 					$this->defaults[ 'post_types-' . $pt . '-not_in_sitemap' ] = true;
 				}
 			}
@@ -122,9 +119,7 @@ class WPSEO_Option_XML extends WPSEO_Option {
 			unset( $tax );
 		}
 		unset( $taxonomy_objects, $filtered_taxonomies );
-
 	}
-
 
 	/**
 	 * Validate the option
@@ -133,10 +128,9 @@ class WPSEO_Option_XML extends WPSEO_Option {
 	 * @param  array $clean Clean value for the option, normally the defaults.
 	 * @param  array $old   Old value of the option.
 	 *
-	 * @return  array      Validated clean value for the option to be saved to the database
+	 * @return array        Validated clean value for the option to be saved to the database
 	 */
 	protected function validate_option( $dirty, $clean, $old ) {
-
 		foreach ( $clean as $key => $value ) {
 			$switch_key = $this->get_switch_key( $key );
 
@@ -151,8 +145,7 @@ class WPSEO_Option_XML extends WPSEO_Option {
 						$int = WPSEO_Utils::validate_int( $dirty[ $key ] );
 						if ( $int !== false && $int > 0 ) {
 							$clean[ $key ] = $int;
-						}
-						else {
+						} else {
 							if ( isset( $old[ $key ] ) && $old[ $key ] !== '' ) {
 								$int = WPSEO_Utils::validate_int( $old[ $key ] );
 								if ( $int !== false && $int > 0 ) {
@@ -183,11 +176,11 @@ class WPSEO_Option_XML extends WPSEO_Option {
 
 					break;
 
-				/*
+				/**
 				Boolean fields
-				*/
+				 */
 
-				/*
+				/**
 				Covers:
 				 *		'disable_author_sitemap':
 				 * 		'disable_author_noposts':
@@ -208,24 +201,23 @@ class WPSEO_Option_XML extends WPSEO_Option {
 		return $clean;
 	}
 
-
 	/**
 	 * Clean a given option value
 	 *
-	 * @param  array  $option_value          Old (not merged with defaults or filtered) option value to
+	 * @param array $option_value Old (not merged with defaults or filtered) option value to
 	 *                                       clean according to the rules for this option.
-	 * @param  string $current_version       (optional) Version from which to upgrade, if not set,
+	 * @param string $current_version (optional) Version from which to upgrade, if not set,
 	 *                                       version specific upgrades will be disregarded.
-	 * @param  array  $all_old_option_values (optional) Only used when importing old options to have
+	 * @param array $all_old_option_values (optional) Only used when importing old options to have
 	 *                                       access to the real old values, in contrast to the saved ones.
 	 *
-	 * @return  array            Cleaned option
+	 * @return array Cleaned option
 	 */
 	protected function clean_option( $option_value, $current_version = null, $all_old_option_values = null ) {
-		/*
+		/**
 		Make sure the values of the variable option key options are cleaned as they
-			   may be retained and would not be cleaned/validated then
-		*/
+				may be retained and would not be cleaned/validated then
+		 */
 		if ( is_array( $option_value ) && $option_value !== array() ) {
 
 			foreach ( $option_value as $key => $value ) {
@@ -244,4 +236,5 @@ class WPSEO_Option_XML extends WPSEO_Option {
 
 		return $option_value;
 	}
+
 }

@@ -51,8 +51,7 @@ $yform->light_switch( 'enablexmlsitemap', __( 'XML sitemap functionality', 'word
 				echo '<br/>';
 				_e( 'You do <strong>not</strong> need to generate the XML sitemap, nor will it take up time to generate after publishing a post.', 'wordpress-seo' );
 				echo '</p>';
-			}
-			else {
+			} else {
 				echo '<p>', __( 'Save your settings to activate XML Sitemaps.', 'wordpress-seo' ), '</p>';
 			}
 			?>

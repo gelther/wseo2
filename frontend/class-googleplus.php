@@ -113,7 +113,7 @@ class WPSEO_GooglePlus {
 	/**
 	 * Returns the meta value for the given $meta_key.
 	 *
-	 * @param string $meta_key The target key that will be fetched.
+	 * @param  string $meta_key The target key that will be fetched.
 	 *
 	 * @return string
 	 */
@@ -128,4 +128,5 @@ class WPSEO_GooglePlus {
 
 		return '';
 	}
+
 }

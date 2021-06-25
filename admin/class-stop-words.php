@@ -10,7 +10,7 @@ class WPSEO_Admin_Stop_Words {
 	/**
 	 * Removes stop words in a slug
 	 *
-	 * @param string $original_slug The slug to remove stop words in.
+	 * @param  string $original_slug The slug to remove stop words in.
 	 *
 	 * @return string
 	 */
@@ -48,4 +48,5 @@ class WPSEO_Admin_Stop_Words {
 
 		return $stopwords;
 	}
+
 }

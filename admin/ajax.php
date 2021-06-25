@@ -56,7 +56,7 @@ function wpseo_set_ignore() {
 
 	$ignore_key = sanitize_text_field( filter_input( INPUT_POST, 'option' ) );
 
-	$options                          = get_option( 'wpseo' );
+	$options                            = get_option( 'wpseo' );
 	$options[ 'ignore_' . $ignore_key ] = true;
 	update_option( 'wpseo', $options );
 
@@ -100,8 +100,7 @@ function wpseo_kill_blocking_files() {
 		foreach ( $options['blocking_files'] as $k => $file ) {
 			if ( ! @unlink( $file ) ) {
 				$message = __( 'Some files could not be removed. Please remove them via FTP.', 'wordpress-seo' );
-			}
-			else {
+			} else {
 				unset( $options['blocking_files'][ $k ] );
 				$files_removed ++;
 			}
@@ -125,9 +124,9 @@ function wpseo_ajax_replace_vars() {
 
 	$post = get_post( intval( filter_input( INPUT_POST, 'post_id' ) ) );
 	global $wp_query;
-	$wp_query->queried_object = $post;
+	$wp_query->queried_object    = $post;
 	$wp_query->queried_object_id = $post->ID;
-	$omit = array( 'excerpt', 'excerpt_only', 'title' );
+	$omit                        = array( 'excerpt', 'excerpt_only', 'title' );
 	echo wpseo_replace_vars( stripslashes( filter_input( INPUT_POST, 'string' ) ), $post, $omit );
 	die;
 }
@@ -173,16 +172,15 @@ function wpseo_save_what( $what ) {
  * Helper function to update a post's meta data, returning relevant information
  * about the information updated and the results or the meta update.
  *
- * @param int    $post_id         Post ID.
- * @param string $new_meta_value  New meta value to record.
- * @param string $orig_meta_value Original meta value.
- * @param string $meta_key        Meta key string.
- * @param string $return_key      Return key string to use in results.
+ * @param  int    $post_id         Post ID.
+ * @param  string $new_meta_value  New meta value to record.
+ * @param  string $orig_meta_value Original meta value.
+ * @param  string $meta_key        Meta key string.
+ * @param  string $return_key      Return key string to use in results.
  *
  * @return string
  */
 function wpseo_upsert_meta( $post_id, $new_meta_value, $orig_meta_value, $meta_key, $return_key ) {
-
 	$post_id                  = intval( $post_id );
 	$sanitized_new_meta_value = wp_strip_all_tags( $new_meta_value );
 	$orig_meta_value          = wp_strip_all_tags( $orig_meta_value );
@@ -288,10 +286,10 @@ function wpseo_save_all( $what ) {
 /**
  * Insert a new value
  *
- * @param string $what     Item type (such as title).
- * @param int    $post_id  Post ID.
- * @param string $new      New value to record.
- * @param string $original Original value.
+ * @param  string $what     Item type (such as title).
+ * @param  int    $post_id  Post ID.
+ * @param  string $new      New value to record.
+ * @param  string $original Original value.
  *
  * @return string
  */
@@ -305,7 +303,6 @@ function wpseo_upsert_new( $what, $post_id, $new, $original ) {
  * Create an export and return the URL
  */
 function wpseo_get_export() {
-
 	$include_taxonomy = ( filter_input( INPUT_POST, 'include_taxonomy' ) === 'true' );
 	$export           = new WPSEO_Export( $include_taxonomy );
 
@@ -343,14 +340,14 @@ function ajax_get_keyword_usage() {
 	);
 }
 
-add_action( 'wp_ajax_get_focus_keyword_usage',  'ajax_get_keyword_usage' );
+add_action( 'wp_ajax_get_focus_keyword_usage', 'ajax_get_keyword_usage' );
 
 /**
  * Retrieves the keyword for the keyword doubles of the termpages.
  */
 function ajax_get_term_keyword_usage() {
-	$post_id = filter_input( INPUT_POST, 'post_id' );
-	$keyword = filter_input( INPUT_POST, 'keyword' );
+	$post_id  = filter_input( INPUT_POST, 'post_id' );
+	$keyword  = filter_input( INPUT_POST, 'keyword' );
 	$taxonomy = filter_input( INPUT_POST, 'taxonomy' );
 
 	wp_die(
@@ -358,15 +355,15 @@ function ajax_get_term_keyword_usage() {
 	);
 }
 
-add_action( 'wp_ajax_get_term_keyword_usage',  'ajax_get_term_keyword_usage' );
+add_action( 'wp_ajax_get_term_keyword_usage', 'ajax_get_term_keyword_usage' );
 
 /**
  * Removes stopword from the sample permalink that is generated in an AJAX request
  *
- * @param array  $permalink The permalink generated for this post by WordPress.
- * @param int    $post_ID The ID of the post.
- * @param string $title The title for the post that the user used.
- * @param string $name The name for the post that the user used.
+ * @param  array  $permalink The permalink generated for this post by WordPress.
+ * @param  int    $post_ID   The ID of the post.
+ * @param  string $title     The title for the post that the user used.
+ * @param  string $name      The name for the post that the user used.
  *
  * @return array
  */
@@ -377,7 +374,7 @@ function wpseo_remove_stopwords_sample_permalink( $permalink, $post_ID, $title, 
 		return $permalink;
 	}
 
-	/*
+	/**
 	 * If the name is empty and the title is not, WordPress will generate a slug. In that case we want to remove stop
 	 * words from the slug.
 	 */

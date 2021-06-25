@@ -64,8 +64,7 @@ class WPSEO_Export {
 		if ( $this->success ) {
 			$results['status'] = 'success';
 			$results['msg']    = sprintf( __( 'Export created: %1$sdownload your export file here%2$s.', 'wordpress-seo' ), '<a href="' . $this->export_zip_url . '">', '</a>' );
-		}
-		else {
+		} else {
 			$results['status'] = 'failure';
 			/* translators: %1$s expands to Yoast SEO */
 			$results['msg']    = sprintf( __( 'Error creating %1$s export: ', 'wordpress-seo' ), 'Yoast SEO' ) . $this->error;
@@ -80,7 +79,6 @@ class WPSEO_Export {
 	 * @return boolean|string $return true when success, error when failed.
 	 */
 	private function export_settings() {
-
 		$this->export_header();
 
 		foreach ( WPSEO_Options::get_option_names() as $opt_group ) {
@@ -92,8 +90,7 @@ class WPSEO_Export {
 		if ( $this->write_file() ) {
 			if ( $this->zip_file() ) {
 				return true;
-			}
-			else {
+			} else {
 				$this->error = __( 'Could not zip settings-file.', 'wordpress-seo' );
 
 				return false;
@@ -147,8 +144,7 @@ class WPSEO_Export {
 				for ( $i = 0; $i < count( $elem ); $i ++ ) {
 					$this->write_setting( $key . '[]', $elem[ $i ] );
 				}
-			}
-			else {
+			} else {
 				$this->write_setting( $key, $elem );
 			}
 		}
@@ -176,8 +172,7 @@ class WPSEO_Export {
 			if ( is_array( $taxonomy_meta ) ) {
 				$this->write_line( '[wpseo_taxonomy_meta]', true );
 				$this->write_setting( 'wpseo_taxonomy_meta', urlencode( WPSEO_Utils::json_encode( $taxonomy_meta ) ) );
-			}
-			else {
+			} else {
 				$this->write_line( '; ' . __( 'No taxonomy metadata found', 'wordpress-seo' ), true );
 			}
 		}
@@ -220,4 +215,5 @@ class WPSEO_Export {
 
 		return true;
 	}
+
 }
